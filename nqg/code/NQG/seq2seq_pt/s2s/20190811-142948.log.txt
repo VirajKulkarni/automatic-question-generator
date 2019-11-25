@@ -1,0 +1,705 @@
+2019-08-11 14:29:48,230 [INFO :__main__] My PID is 73969
+2019-08-11 14:29:48,230 [INFO :__main__] PyTorch version: 1.1.0
+2019-08-11 14:29:48,230 [INFO :__main__] Namespace(att_vec_size=512, batch_size=64, beam_size=5, bio_vocab='/home/stud-viraj/nqg/data/redistribute/QG/train/bio.vocab.txt', brnn=True, brnn_merge='concat', cuda_seed=12345, curriculum=0, dec_rnn_size=512, dev_bio='/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.bio', dev_feats=['/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.pos', '/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.ner', '/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.case'], dev_input_src='/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.source.txt', dev_ref='/home/stud-viraj/nqg/data/redistribute/QG/dev/dev.txt.shuffle.dev.target.txt', dropout=0.5, enc_rnn_size=512, epochs=20, eval_per_batch=500, extra_shuffle=True, feat_vocab='/home/stud-viraj/nqg/data/redistribute/QG/train/feat.vocab.txt', gpus=[3], halve_lr_bad_count=3, input_feed=1, layers=1, learning_rate=0.001, learning_rate_decay=0.5, log_home='/home/stud-viraj/nqg/data/redistribute/QG/models/NQG_plus', log_interval=100, lower_input=False, max_generator_batches=32, max_grad_norm=5, max_sent_length=100, max_weight_value=15, maxout_pool_size=2, online_process_data=True, optim='adam', param_init=0.1, pre_word_vecs_dec=None, pre_word_vecs_enc=None, process_shuffle=False, save_path='/home/stud-viraj/nqg/data/redistribute/QG/models/NQG_plus', seed=12345, src_vocab='/home/stud-viraj/nqg/data/redistribute/QG/train/vocab.txt.20k', start_decay_at=8, start_epoch=1, start_eval_batch=1000, tgt_vocab='/home/stud-viraj/nqg/data/redistribute/QG/train/vocab.txt.20k', train_bio='/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.bio', train_feats=['/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.pos', '/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.ner', '/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.case'], train_from='', train_from_state_dict='', train_src='/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.source.txt', train_tgt='/home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.target.txt', word_vec_size=300)
+2019-08-11 14:29:48,411 [INFO :__main__] My seed is 12345
+2019-08-11 14:29:51,760 [INFO :__main__] My cuda seed is 12345
+2019-08-11 14:29:51,761 [INFO :onlinePreprocess] Reading source vocabulary from '/home/stud-viraj/nqg/data/redistribute/QG/train/vocab.txt.20k'...
+2019-08-11 14:29:51,783 [INFO :onlinePreprocess] Loaded 20000 source words
+2019-08-11 14:29:51,783 [INFO :onlinePreprocess] Reading bio vocabulary from '/home/stud-viraj/nqg/data/redistribute/QG/train/bio.vocab.txt'...
+2019-08-11 14:29:51,783 [INFO :onlinePreprocess] Loaded 7 bio words
+2019-08-11 14:29:51,783 [INFO :onlinePreprocess] Reading feat vocabulary from '/home/stud-viraj/nqg/data/redistribute/QG/train/feat.vocab.txt'...
+2019-08-11 14:29:51,783 [INFO :onlinePreprocess] Loaded 63 feat words
+2019-08-11 14:29:51,784 [INFO :onlinePreprocess] Reading target vocabulary from '/home/stud-viraj/nqg/data/redistribute/QG/train/vocab.txt.20k'...
+2019-08-11 14:29:51,805 [INFO :onlinePreprocess] Loaded 20000 target words
+2019-08-11 14:29:51,805 [INFO :onlinePreprocess] Preparing training ...
+2019-08-11 14:29:51,806 [INFO :onlinePreprocess] Processing /home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.source.txt & /home/stud-viraj/nqg/data/redistribute/QG/train/train.txt.target.txt ...
+2019-08-11 14:30:00,819 [INFO :onlinePreprocess] ... sorting sentences by size
+2019-08-11 14:30:03,613 [INFO :onlinePreprocess] Prepared 86081 sentences (554 ignored due to length == 0 or > 100)
+2019-08-11 14:30:03,613 [INFO :__main__]  * vocabulary size. source = 20000; target = 20000
+2019-08-11 14:30:03,613 [INFO :__main__]  * number of training sentences. 86081
+2019-08-11 14:30:03,613 [INFO :__main__]  * maximum batch size. 64
+2019-08-11 14:30:03,613 [INFO :__main__] Building model...
+2019-08-11 14:30:04,150 [INFO :__main__] encoder.word_lut.weight
+2019-08-11 14:30:04,150 [INFO :__main__] encoder.bio_lut.weight
+2019-08-11 14:30:04,150 [INFO :__main__] encoder.feat_lut.weight
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.weight_ih_l0
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.weight_hh_l0
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.bias_ih_l0
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.bias_hh_l0
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.weight_ih_l0_reverse
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.weight_hh_l0_reverse
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.bias_ih_l0_reverse
+2019-08-11 14:30:04,151 [INFO :__main__] encoder.rnn.bias_hh_l0_reverse
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.word_lut.weight
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.rnn.layers.0.weight_ih
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.rnn.layers.0.weight_hh
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.rnn.layers.0.bias_ih
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.rnn.layers.0.bias_hh
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.attn.linear_pre.weight
+2019-08-11 14:30:04,151 [INFO :__main__] decoder.attn.linear_pre.bias
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.attn.linear_q.weight
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.attn.linear_v.weight
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.readout.weight
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.readout.bias
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.copySwitch.weight
+2019-08-11 14:30:04,152 [INFO :__main__] decoder.copySwitch.bias
+2019-08-11 14:30:04,152 [INFO :__main__] decIniter.initer.weight
+2019-08-11 14:30:04,152 [INFO :__main__] decIniter.initer.bias
+2019-08-11 14:30:04,152 [INFO :__main__] generator.0.weight
+2019-08-11 14:30:04,152 [INFO :__main__] generator.0.bias
+2019-08-11 14:30:05,036 [INFO :__main__] NMTModel(
+  (encoder): Encoder(
+    (word_lut): Embedding(20000, 300, padding_idx=0)
+    (bio_lut): Embedding(8, 16, padding_idx=0)
+    (feat_lut): Embedding(64, 16, padding_idx=0)
+    (rnn): GRU(364, 256, dropout=0.5, bidirectional=True)
+  )
+  (decoder): Decoder(
+    (word_lut): Embedding(20000, 300, padding_idx=0)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.5)
+      (layers): ModuleList(
+        (0): GRUCell(812, 512)
+      )
+    )
+    (attn): ConcatAttention(512 * (512->512 + 512->512))
+    (dropout): Dropout(p=0.5)
+    (readout): Linear(in_features=1324, out_features=512, bias=True)
+    (maxout): MaxOut(2)
+    (copySwitch): Linear(in_features=1024, out_features=1, bias=True)
+  )
+  (decIniter): DecInit(
+    (initer): Linear(in_features=256, out_features=512, bias=True)
+    (tanh): Tanh()
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=256, out_features=20000, bias=True)
+    (1): Softmax()
+  )
+)
+2019-08-11 14:30:05,037 [WARNI:__main__] Set model to train mode
+2019-08-11 14:30:05,037 [INFO :__main__] 
+2019-08-11 14:30:05,037 [INFO :__main__] Shuffling...
+2019-08-11 14:30:41,893 [INFO :__main__] Epoch  1,    100/  100/ 1346; acc:   0.00; loss: 480913.61; words: 79222; ppl: 432.88; 5766 src tok/s; 2219 tgt tok/s;     36 s elapsed
+2019-08-11 14:31:16,885 [INFO :__main__] Epoch  1,    200/  200/ 1346; acc:   0.00; loss: 411358.53; words: 78481; ppl: 188.95; 5994 src tok/s; 2243 tgt tok/s;     35 s elapsed
+2019-08-11 14:31:51,915 [INFO :__main__] Epoch  1,    300/  300/ 1346; acc:   0.00; loss: 400231.58; words: 79069; ppl: 157.87; 5863 src tok/s; 2257 tgt tok/s;     35 s elapsed
+2019-08-11 14:32:26,945 [INFO :__main__] Epoch  1,    400/  400/ 1346; acc:   0.00; loss: 383234.37; words: 78536; ppl: 131.59; 5841 src tok/s; 2242 tgt tok/s;     35 s elapsed
+2019-08-11 14:33:00,805 [INFO :__main__] Epoch  1,    500/  500/ 1346; acc:   0.00; loss: 376503.51; words: 78706; ppl: 119.54; 6199 src tok/s; 2325 tgt tok/s;     34 s elapsed
+2019-08-11 14:33:34,801 [INFO :__main__] Epoch  1,    600/  600/ 1346; acc:   0.00; loss: 363185.03; words: 77755; ppl: 106.79; 6069 src tok/s; 2287 tgt tok/s;     34 s elapsed
+2019-08-11 14:34:09,978 [INFO :__main__] Epoch  1,    700/  700/ 1346; acc:   0.00; loss: 361781.04; words: 78744; ppl:  98.93; 5836 src tok/s; 2239 tgt tok/s;     35 s elapsed
+2019-08-11 14:34:44,529 [INFO :__main__] Epoch  1,    800/  800/ 1346; acc:   0.00; loss: 354734.90; words: 78806; ppl:  90.14; 6029 src tok/s; 2281 tgt tok/s;     35 s elapsed
+2019-08-11 14:35:19,753 [INFO :__main__] Epoch  1,    900/  900/ 1346; acc:   0.00; loss: 345339.88; words: 78020; ppl:  83.62; 5831 src tok/s; 2215 tgt tok/s;     35 s elapsed
+2019-08-11 14:35:55,275 [INFO :__main__] Epoch  1,   1000/ 1000/ 1346; acc:   0.00; loss: 342910.73; words: 78928; ppl:  77.06; 5825 src tok/s; 2222 tgt tok/s;     36 s elapsed
+2019-08-11 14:36:29,762 [INFO :__main__] Epoch  1,   1100/ 1100/ 1346; acc:   0.00; loss: 332791.53; words: 78508; ppl:  69.34; 6043 src tok/s; 2277 tgt tok/s;     34 s elapsed
+2019-08-11 14:37:05,790 [INFO :__main__] Epoch  1,   1200/ 1200/ 1346; acc:   0.00; loss: 325691.46; words: 78327; ppl:  63.95; 5708 src tok/s; 2174 tgt tok/s;     36 s elapsed
+2019-08-11 14:37:41,426 [INFO :__main__] Epoch  1,   1300/ 1300/ 1346; acc:   0.00; loss: 322420.15; words: 78765; ppl:  59.95; 5855 src tok/s; 2210 tgt tok/s;     36 s elapsed
+2019-08-11 14:37:57,494 [INFO :__main__] Train perplexity: 107.264
+2019-08-11 14:37:57,494 [INFO :__main__] Train accuracy: 0
+2019-08-11 14:37:57,494 [INFO :__main__] Saving checkpoint for epoch 1...
+2019-08-11 14:37:58,219 [INFO :__main__] 
+2019-08-11 14:37:58,219 [INFO :__main__] Shuffling...
+2019-08-11 14:38:34,049 [INFO :__main__] Epoch  2,   1446/  100/ 1346; acc:   0.00; loss: 292758.52; words: 78459; ppl:  41.74; 5997 src tok/s; 2252 tgt tok/s;     35 s elapsed
+2019-08-11 14:38:52,409 [WARNI:__main__] Set model to eval mode
+2019-08-11 14:41:55,052 [WARNI:__main__] Set model to train mode
+2019-08-11 14:41:55,052 [INFO :__main__] Validation Score: 5.93438
+2019-08-11 14:41:55,762 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 14:41:55,762 [INFO :s2s.Optim] Best metric: 0.05934381287186856
+2019-08-11 14:42:12,072 [INFO :__main__] Epoch  2,   1546/  200/ 1346; acc:   0.00; loss: 290714.27; words: 78370; ppl:  40.83; 942 src tok/s; 359 tgt tok/s;    218 s elapsed
+2019-08-11 14:42:46,396 [INFO :__main__] Epoch  2,   1646/  300/ 1346; acc:   0.00; loss: 290633.24; words: 78866; ppl:  39.85; 5974 src tok/s; 2298 tgt tok/s;     34 s elapsed
+2019-08-11 14:43:21,260 [INFO :__main__] Epoch  2,   1746/  400/ 1346; acc:   0.00; loss: 288709.22; words: 78761; ppl:  39.08; 5981 src tok/s; 2259 tgt tok/s;     35 s elapsed
+2019-08-11 14:43:55,972 [INFO :__main__] Epoch  2,   1846/  500/ 1346; acc:   0.00; loss: 285055.80; words: 78545; ppl:  37.68; 6001 src tok/s; 2263 tgt tok/s;     35 s elapsed
+2019-08-11 14:44:30,602 [INFO :__main__] Epoch  2,   1946/  600/ 1346; acc:   0.00; loss: 282942.35; words: 78791; ppl:  36.27; 6027 src tok/s; 2275 tgt tok/s;     35 s elapsed
+2019-08-11 14:44:49,263 [WARNI:__main__] Set model to eval mode
+2019-08-11 14:48:02,765 [WARNI:__main__] Set model to train mode
+2019-08-11 14:48:02,765 [INFO :__main__] Validation Score: 8.4098
+2019-08-11 14:48:03,516 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 14:48:03,517 [INFO :s2s.Optim] Best metric: 0.08409800559486585
+2019-08-11 14:48:19,520 [INFO :__main__] Epoch  2,   2046/  700/ 1346; acc:   0.00; loss: 280688.73; words: 78841; ppl:  35.17; 893 src tok/s; 344 tgt tok/s;    229 s elapsed
+2019-08-11 14:48:55,588 [INFO :__main__] Epoch  2,   2146/  800/ 1346; acc:   0.00; loss: 276980.61; words: 79270; ppl:  32.92; 5690 src tok/s; 2198 tgt tok/s;     36 s elapsed
+2019-08-11 14:49:31,578 [INFO :__main__] Epoch  2,   2246/  900/ 1346; acc:   0.00; loss: 277012.44; words: 79023; ppl:  33.30; 5844 src tok/s; 2196 tgt tok/s;     36 s elapsed
+2019-08-11 14:50:06,595 [INFO :__main__] Epoch  2,   2346/ 1000/ 1346; acc:   0.00; loss: 266383.82; words: 77656; ppl:  30.89; 5776 src tok/s; 2218 tgt tok/s;     35 s elapsed
+2019-08-11 14:50:41,293 [INFO :__main__] Epoch  2,   2446/ 1100/ 1346; acc:   0.00; loss: 266935.05; words: 78005; ppl:  30.63; 6000 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 14:51:00,042 [WARNI:__main__] Set model to eval mode
+2019-08-11 14:54:08,742 [WARNI:__main__] Set model to train mode
+2019-08-11 14:54:08,742 [INFO :__main__] Validation Score: 9.78268
+2019-08-11 14:54:09,446 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 14:54:09,446 [INFO :s2s.Optim] Best metric: 0.09782679943194143
+2019-08-11 14:54:25,724 [INFO :__main__] Epoch  2,   2546/ 1200/ 1346; acc:   0.00; loss: 267418.37; words: 78897; ppl:  29.65; 910 src tok/s; 352 tgt tok/s;    224 s elapsed
+2019-08-11 14:55:01,126 [INFO :__main__] Epoch  2,   2646/ 1300/ 1346; acc:   0.00; loss: 266244.69; words: 78636; ppl:  29.54; 5865 src tok/s; 2221 tgt tok/s;     35 s elapsed
+2019-08-11 14:55:17,068 [INFO :__main__] Train perplexity: 34.7158
+2019-08-11 14:55:17,068 [INFO :__main__] Train accuracy: 0
+2019-08-11 14:55:17,068 [INFO :__main__] Saving checkpoint for epoch 2...
+2019-08-11 14:55:17,796 [INFO :__main__] 
+2019-08-11 14:55:17,796 [INFO :__main__] Shuffling...
+2019-08-11 14:55:53,064 [INFO :__main__] Epoch  3,   2792/  100/ 1346; acc:   0.00; loss: 229004.22; words: 78643; ppl:  18.39; 5970 src tok/s; 2294 tgt tok/s;     34 s elapsed
+2019-08-11 14:56:28,308 [INFO :__main__] Epoch  3,   2892/  200/ 1346; acc:   0.00; loss: 228934.02; words: 78583; ppl:  18.42; 5848 src tok/s; 2230 tgt tok/s;     35 s elapsed
+2019-08-11 14:57:02,774 [INFO :__main__] Epoch  3,   2992/  300/ 1346; acc:   0.00; loss: 231337.51; words: 78771; ppl:  18.86; 6014 src tok/s; 2286 tgt tok/s;     34 s elapsed
+2019-08-11 14:57:05,067 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:00:50,854 [WARNI:__main__] Set model to train mode
+2019-08-11 15:00:50,855 [INFO :__main__] Validation Score: 11.3804
+2019-08-11 15:00:51,554 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 15:00:51,555 [INFO :s2s.Optim] Best metric: 0.1138043690107513
+2019-08-11 15:01:23,657 [INFO :__main__] Epoch  3,   3092/  400/ 1346; acc:   0.00; loss: 228354.57; words: 77725; ppl:  18.88; 779 src tok/s; 298 tgt tok/s;    261 s elapsed
+2019-08-11 15:01:59,266 [INFO :__main__] Epoch  3,   3192/  500/ 1346; acc:   0.00; loss: 231300.54; words: 78916; ppl:  18.75; 5804 src tok/s; 2216 tgt tok/s;     36 s elapsed
+2019-08-11 15:02:33,967 [INFO :__main__] Epoch  3,   3292/  600/ 1346; acc:   0.00; loss: 230215.14; words: 78845; ppl:  18.54; 5979 src tok/s; 2272 tgt tok/s;     35 s elapsed
+2019-08-11 15:03:08,615 [INFO :__main__] Epoch  3,   3392/  700/ 1346; acc:   0.00; loss: 231921.86; words: 78785; ppl:  18.99; 6060 src tok/s; 2274 tgt tok/s;     35 s elapsed
+2019-08-11 15:03:43,869 [INFO :__main__] Epoch  3,   3492/  800/ 1346; acc:   0.00; loss: 231579.30; words: 79014; ppl:  18.74; 5847 src tok/s; 2241 tgt tok/s;     35 s elapsed
+2019-08-11 15:03:46,158 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:07:08,202 [WARNI:__main__] Set model to train mode
+2019-08-11 15:07:08,202 [INFO :__main__] Validation Score: 11.6464
+2019-08-11 15:07:08,893 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 15:07:08,893 [INFO :s2s.Optim] Best metric: 0.11646396673514943
+2019-08-11 15:07:42,641 [INFO :__main__] Epoch  3,   3592/  900/ 1346; acc:   0.00; loss: 229536.08; words: 78256; ppl:  18.79; 854 src tok/s; 328 tgt tok/s;    239 s elapsed
+2019-08-11 15:08:17,793 [INFO :__main__] Epoch  3,   3692/ 1000/ 1346; acc:   0.00; loss: 230798.45; words: 78888; ppl:  18.65; 5882 src tok/s; 2244 tgt tok/s;     35 s elapsed
+2019-08-11 15:08:52,998 [INFO :__main__] Epoch  3,   3792/ 1100/ 1346; acc:   0.00; loss: 226815.06; words: 78164; ppl:  18.21; 5831 src tok/s; 2220 tgt tok/s;     35 s elapsed
+2019-08-11 15:09:27,341 [INFO :__main__] Epoch  3,   3892/ 1200/ 1346; acc:   0.00; loss: 228597.97; words: 78447; ppl:  18.43; 6045 src tok/s; 2284 tgt tok/s;     34 s elapsed
+2019-08-11 15:10:02,086 [INFO :__main__] Epoch  3,   3992/ 1300/ 1346; acc:   0.00; loss: 225600.15; words: 78284; ppl:  17.85; 5931 src tok/s; 2253 tgt tok/s;     35 s elapsed
+2019-08-11 15:10:04,891 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:13:21,676 [WARNI:__main__] Set model to train mode
+2019-08-11 15:13:21,677 [INFO :__main__] Validation Score: 12.2359
+2019-08-11 15:13:22,358 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 15:13:22,358 [INFO :s2s.Optim] Best metric: 0.12235878983337373
+2019-08-11 15:13:36,593 [INFO :__main__] Train perplexity: 18.5467
+2019-08-11 15:13:36,594 [INFO :__main__] Train accuracy: 0
+2019-08-11 15:13:36,594 [INFO :__main__] Saving checkpoint for epoch 3...
+2019-08-11 15:13:37,269 [INFO :__main__] 
+2019-08-11 15:13:37,269 [INFO :__main__] Shuffling...
+2019-08-11 15:14:13,674 [INFO :__main__] Epoch  4,   4138/  100/ 1346; acc:   0.00; loss: 192500.82; words: 79272; ppl:  11.34; 5831 src tok/s; 2238 tgt tok/s;     35 s elapsed
+2019-08-11 15:14:48,629 [INFO :__main__] Epoch  4,   4238/  200/ 1346; acc:   0.00; loss: 191148.01; words: 78294; ppl:  11.49; 6048 src tok/s; 2240 tgt tok/s;     35 s elapsed
+2019-08-11 15:15:23,168 [INFO :__main__] Epoch  4,   4338/  300/ 1346; acc:   0.00; loss: 194298.49; words: 78784; ppl:  11.78; 6073 src tok/s; 2281 tgt tok/s;     35 s elapsed
+2019-08-11 15:15:58,549 [INFO :__main__] Epoch  4,   4438/  400/ 1346; acc:   0.00; loss: 195087.80; words: 78785; ppl:  11.90; 5784 src tok/s; 2227 tgt tok/s;     35 s elapsed
+2019-08-11 15:16:19,698 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:19:09,697 [WARNI:__main__] Set model to train mode
+2019-08-11 15:19:09,698 [INFO :__main__] Validation Score: 13.0892
+2019-08-11 15:19:10,397 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.001
+2019-08-11 15:19:10,397 [INFO :s2s.Optim] Best metric: 0.1308922139473608
+2019-08-11 15:19:23,817 [INFO :__main__] Epoch  4,   4538/  500/ 1346; acc:   0.00; loss: 194710.25; words: 78427; ppl:  11.97; 989 src tok/s; 382 tgt tok/s;    205 s elapsed
+2019-08-11 15:19:59,149 [INFO :__main__] Epoch  4,   4638/  600/ 1346; acc:   0.00; loss: 199695.26; words: 78849; ppl:  12.59; 5837 src tok/s; 2232 tgt tok/s;     35 s elapsed
+2019-08-11 15:20:33,581 [INFO :__main__] Epoch  4,   4738/  700/ 1346; acc:   0.00; loss: 196380.65; words: 78421; ppl:  12.23; 6025 src tok/s; 2278 tgt tok/s;     34 s elapsed
+2019-08-11 15:21:08,410 [INFO :__main__] Epoch  4,   4838/  800/ 1346; acc:   0.00; loss: 198285.26; words: 78350; ppl:  12.56; 6009 src tok/s; 2250 tgt tok/s;     35 s elapsed
+2019-08-11 15:21:43,647 [INFO :__main__] Epoch  4,   4938/  900/ 1346; acc:   0.00; loss: 198919.02; words: 78656; ppl:  12.54; 5802 src tok/s; 2232 tgt tok/s;     35 s elapsed
+2019-08-11 15:22:04,659 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:24:51,911 [WARNI:__main__] Set model to train mode
+2019-08-11 15:24:51,911 [INFO :__main__] Validation Score: 13.0433
+2019-08-11 15:24:51,911 [INFO :s2s.Optim] Bad_count: 1	Current lr: 0.001
+2019-08-11 15:24:51,911 [INFO :s2s.Optim] Best metric: 0.1308922139473608
+2019-08-11 15:25:05,138 [INFO :__main__] Epoch  4,   5038/ 1000/ 1346; acc:   0.00; loss: 201346.91; words: 79007; ppl:  12.79; 1022 src tok/s; 392 tgt tok/s;    201 s elapsed
+2019-08-11 15:25:40,402 [INFO :__main__] Epoch  4,   5138/ 1100/ 1346; acc:   0.00; loss: 200970.78; words: 78485; ppl:  12.94; 5794 src tok/s; 2226 tgt tok/s;     35 s elapsed
+2019-08-11 15:26:14,933 [INFO :__main__] Epoch  4,   5238/ 1200/ 1346; acc:   0.00; loss: 200741.14; words: 78232; ppl:  13.01; 5946 src tok/s; 2266 tgt tok/s;     35 s elapsed
+2019-08-11 15:26:49,795 [INFO :__main__] Epoch  4,   5338/ 1300/ 1346; acc:   0.00; loss: 200522.11; words: 78376; ppl:  12.92; 6014 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 15:27:06,089 [INFO :__main__] Train perplexity: 12.3058
+2019-08-11 15:27:06,090 [INFO :__main__] Train accuracy: 0
+2019-08-11 15:27:06,091 [INFO :__main__] Saving checkpoint for epoch 4...
+2019-08-11 15:27:06,803 [INFO :__main__] 
+2019-08-11 15:27:06,803 [INFO :__main__] Shuffling...
+2019-08-11 15:27:41,882 [INFO :__main__] Epoch  5,   5484/  100/ 1346; acc:   0.00; loss: 162458.56; words: 78507; ppl:   7.92; 6034 src tok/s; 2265 tgt tok/s;     35 s elapsed
+2019-08-11 15:27:47,285 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:30:35,182 [WARNI:__main__] Set model to train mode
+2019-08-11 15:30:35,182 [INFO :__main__] Validation Score: 13.0255
+2019-08-11 15:30:35,182 [INFO :s2s.Optim] Bad_count: 2	Current lr: 0.001
+2019-08-11 15:30:35,182 [INFO :s2s.Optim] Best metric: 0.1308922139473608
+2019-08-11 15:31:04,749 [INFO :__main__] Epoch  5,   5584/  200/ 1346; acc:   0.00; loss: 165476.76; words: 78461; ppl:   8.24; 1010 src tok/s; 387 tgt tok/s;    203 s elapsed
+2019-08-11 15:31:39,645 [INFO :__main__] Epoch  5,   5684/  300/ 1346; acc:   0.00; loss: 166829.68; words: 78158; ppl:   8.45; 5891 src tok/s; 2240 tgt tok/s;     35 s elapsed
+2019-08-11 15:32:14,168 [INFO :__main__] Epoch  5,   5784/  400/ 1346; acc:   0.00; loss: 172753.44; words: 79090; ppl:   8.88; 6042 src tok/s; 2291 tgt tok/s;     35 s elapsed
+2019-08-11 15:32:49,861 [INFO :__main__] Epoch  5,   5884/  500/ 1346; acc:   0.00; loss: 173418.44; words: 78714; ppl:   9.05; 5874 src tok/s; 2205 tgt tok/s;     36 s elapsed
+2019-08-11 15:33:24,796 [INFO :__main__] Epoch  5,   5984/  600/ 1346; acc:   0.00; loss: 173158.05; words: 78644; ppl:   9.04; 6085 src tok/s; 2251 tgt tok/s;     35 s elapsed
+2019-08-11 15:33:29,865 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:36:23,073 [WARNI:__main__] Set model to train mode
+2019-08-11 15:36:23,074 [INFO :__main__] Validation Score: 12.8808
+2019-08-11 15:36:23,074 [INFO :s2s.Optim] Bad_count: 3	Current lr: 0.001
+2019-08-11 15:36:23,074 [INFO :s2s.Optim] Best metric: 0.1308922139473608
+2019-08-11 15:36:23,074 [INFO :s2s.Optim] Decaying learning rate to 0.0005
+2019-08-11 15:36:52,682 [INFO :__main__] Epoch  5,   6084/  700/ 1346; acc:   0.00; loss: 173536.43; words: 78754; ppl:   9.06; 993 src tok/s; 379 tgt tok/s;    208 s elapsed
+2019-08-11 15:37:27,062 [INFO :__main__] Epoch  5,   6184/  800/ 1346; acc:   0.00; loss: 169285.78; words: 78546; ppl:   8.63; 5995 src tok/s; 2285 tgt tok/s;     34 s elapsed
+2019-08-11 15:38:01,629 [INFO :__main__] Epoch  5,   6284/  900/ 1346; acc:   0.00; loss: 169096.13; words: 78897; ppl:   8.53; 6005 src tok/s; 2282 tgt tok/s;     35 s elapsed
+2019-08-11 15:38:36,838 [INFO :__main__] Epoch  5,   6384/ 1000/ 1346; acc:   0.00; loss: 168359.16; words: 78848; ppl:   8.46; 5800 src tok/s; 2239 tgt tok/s;     35 s elapsed
+2019-08-11 15:39:11,302 [INFO :__main__] Epoch  5,   6484/ 1100/ 1346; acc:   0.00; loss: 170565.38; words: 79076; ppl:   8.64; 5978 src tok/s; 2295 tgt tok/s;     34 s elapsed
+2019-08-11 15:39:16,537 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:41:55,916 [WARNI:__main__] Set model to train mode
+2019-08-11 15:41:55,916 [INFO :__main__] Validation Score: 13.3148
+2019-08-11 15:41:56,705 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.0005
+2019-08-11 15:41:56,705 [INFO :s2s.Optim] Best metric: 0.13314764886802785
+2019-08-11 15:42:26,212 [INFO :__main__] Epoch  5,   6584/ 1200/ 1346; acc:   0.00; loss: 168373.84; words: 78163; ppl:   8.62; 1053 src tok/s; 401 tgt tok/s;    195 s elapsed
+2019-08-11 15:43:01,325 [INFO :__main__] Epoch  5,   6684/ 1300/ 1346; acc:   0.00; loss: 166951.75; words: 78108; ppl:   8.48; 5752 src tok/s; 2224 tgt tok/s;     35 s elapsed
+2019-08-11 15:43:17,092 [INFO :__main__] Train perplexity: 8.60872
+2019-08-11 15:43:17,093 [INFO :__main__] Train accuracy: 0
+2019-08-11 15:43:17,093 [INFO :__main__] Saving checkpoint for epoch 5...
+2019-08-11 15:43:17,873 [INFO :__main__] 
+2019-08-11 15:43:17,873 [INFO :__main__] Shuffling...
+2019-08-11 15:43:53,297 [INFO :__main__] Epoch  6,   6830/  100/ 1346; acc:   0.00; loss: 136432.25; words: 78797; ppl:   5.65; 6023 src tok/s; 2288 tgt tok/s;     34 s elapsed
+2019-08-11 15:44:28,238 [INFO :__main__] Epoch  6,   6930/  200/ 1346; acc:   0.00; loss: 136002.91; words: 78872; ppl:   5.61; 6067 src tok/s; 2257 tgt tok/s;     35 s elapsed
+2019-08-11 15:44:52,193 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:47:31,214 [WARNI:__main__] Set model to train mode
+2019-08-11 15:47:31,214 [INFO :__main__] Validation Score: 13.3938
+2019-08-11 15:47:31,964 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.0005
+2019-08-11 15:47:31,964 [INFO :s2s.Optim] Best metric: 0.1339380275571988
+2019-08-11 15:47:42,858 [INFO :__main__] Epoch  6,   7030/  300/ 1346; acc:   0.00; loss: 135710.76; words: 78693; ppl:   5.61; 1043 src tok/s; 404 tgt tok/s;    195 s elapsed
+2019-08-11 15:48:18,129 [INFO :__main__] Epoch  6,   7130/  400/ 1346; acc:   0.00; loss: 136209.41; words: 78116; ppl:   5.72; 5800 src tok/s; 2215 tgt tok/s;     35 s elapsed
+2019-08-11 15:48:52,493 [INFO :__main__] Epoch  6,   7230/  500/ 1346; acc:   0.00; loss: 140149.49; words: 78382; ppl:   5.98; 6011 src tok/s; 2281 tgt tok/s;     34 s elapsed
+2019-08-11 15:49:26,852 [INFO :__main__] Epoch  6,   7330/  600/ 1346; acc:   0.00; loss: 139773.15; words: 78760; ppl:   5.90; 5981 src tok/s; 2292 tgt tok/s;     34 s elapsed
+2019-08-11 15:50:02,019 [INFO :__main__] Epoch  6,   7430/  700/ 1346; acc:   0.00; loss: 142171.54; words: 79025; ppl:   6.04; 5825 src tok/s; 2247 tgt tok/s;     35 s elapsed
+2019-08-11 15:50:27,190 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:53:35,340 [WARNI:__main__] Set model to train mode
+2019-08-11 15:53:35,340 [INFO :__main__] Validation Score: 13.1245
+2019-08-11 15:53:35,340 [INFO :s2s.Optim] Bad_count: 1	Current lr: 0.0005
+2019-08-11 15:53:35,340 [INFO :s2s.Optim] Best metric: 0.1339380275571988
+2019-08-11 15:53:46,086 [INFO :__main__] Epoch  6,   7530/  800/ 1346; acc:   0.00; loss: 140674.29; words: 77902; ppl:   6.08; 906 src tok/s; 348 tgt tok/s;    224 s elapsed
+2019-08-11 15:54:20,763 [INFO :__main__] Epoch  6,   7630/  900/ 1346; acc:   0.00; loss: 145110.23; words: 79206; ppl:   6.25; 6018 src tok/s; 2284 tgt tok/s;     35 s elapsed
+2019-08-11 15:54:55,776 [INFO :__main__] Epoch  6,   7730/ 1000/ 1346; acc:   0.00; loss: 144918.57; words: 79119; ppl:   6.24; 5771 src tok/s; 2260 tgt tok/s;     35 s elapsed
+2019-08-11 15:55:30,427 [INFO :__main__] Epoch  6,   7830/ 1100/ 1346; acc:   0.00; loss: 142915.53; words: 78074; ppl:   6.24; 6005 src tok/s; 2253 tgt tok/s;     35 s elapsed
+2019-08-11 15:56:05,566 [INFO :__main__] Epoch  6,   7930/ 1200/ 1346; acc:   0.00; loss: 144848.62; words: 78537; ppl:   6.32; 5860 src tok/s; 2235 tgt tok/s;     35 s elapsed
+2019-08-11 15:56:29,422 [WARNI:__main__] Set model to eval mode
+2019-08-11 15:59:08,778 [WARNI:__main__] Set model to train mode
+2019-08-11 15:59:08,779 [INFO :__main__] Validation Score: 13.1231
+2019-08-11 15:59:08,779 [INFO :s2s.Optim] Bad_count: 2	Current lr: 0.0005
+2019-08-11 15:59:08,779 [INFO :s2s.Optim] Best metric: 0.1339380275571988
+2019-08-11 15:59:19,500 [INFO :__main__] Epoch  6,   8030/ 1300/ 1346; acc:   0.00; loss: 144326.00; words: 78420; ppl:   6.30; 1068 src tok/s; 404 tgt tok/s;    194 s elapsed
+2019-08-11 15:59:35,425 [INFO :__main__] Train perplexity: 6.0016
+2019-08-11 15:59:35,426 [INFO :__main__] Train accuracy: 0
+2019-08-11 15:59:35,426 [INFO :__main__] Saving checkpoint for epoch 6...
+2019-08-11 15:59:36,161 [INFO :__main__] 
+2019-08-11 15:59:36,708 [INFO :__main__] Shuffling...
+2019-08-11 16:00:12,824 [INFO :__main__] Epoch  7,   8176/  100/ 1346; acc:   0.00; loss: 119859.08; words: 78312; ppl:   4.62; 5789 src tok/s; 2231 tgt tok/s;     35 s elapsed
+2019-08-11 16:00:47,345 [INFO :__main__] Epoch  7,   8276/  200/ 1346; acc:   0.00; loss: 119017.42; words: 78522; ppl:   4.55; 6009 src tok/s; 2275 tgt tok/s;     35 s elapsed
+2019-08-11 16:01:22,357 [INFO :__main__] Epoch  7,   8376/  300/ 1346; acc:   0.00; loss: 123670.60; words: 79189; ppl:   4.77; 5803 src tok/s; 2262 tgt tok/s;     35 s elapsed
+2019-08-11 16:01:56,757 [INFO :__main__] Epoch  7,   8476/  400/ 1346; acc:   0.00; loss: 124231.67; words: 78335; ppl:   4.88; 5979 src tok/s; 2277 tgt tok/s;     34 s elapsed
+2019-08-11 16:02:04,889 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:05:18,125 [WARNI:__main__] Set model to train mode
+2019-08-11 16:05:18,125 [INFO :__main__] Validation Score: 13.3091
+2019-08-11 16:05:18,125 [INFO :s2s.Optim] Bad_count: 3	Current lr: 0.0005
+2019-08-11 16:05:18,125 [INFO :s2s.Optim] Best metric: 0.1339380275571988
+2019-08-11 16:05:18,125 [INFO :s2s.Optim] Decaying learning rate to 0.00025
+2019-08-11 16:05:45,813 [INFO :__main__] Epoch  7,   8576/  500/ 1346; acc:   0.00; loss: 124162.12; words: 78707; ppl:   4.84; 895 src tok/s; 344 tgt tok/s;    229 s elapsed
+2019-08-11 16:06:20,985 [INFO :__main__] Epoch  7,   8676/  600/ 1346; acc:   0.00; loss: 120699.46; words: 78903; ppl:   4.62; 5810 src tok/s; 2243 tgt tok/s;     35 s elapsed
+2019-08-11 16:06:56,356 [INFO :__main__] Epoch  7,   8776/  700/ 1346; acc:   0.00; loss: 121609.72; words: 78591; ppl:   4.70; 5845 src tok/s; 2222 tgt tok/s;     35 s elapsed
+2019-08-11 16:07:30,974 [INFO :__main__] Epoch  7,   8876/  800/ 1346; acc:   0.00; loss: 124081.05; words: 78663; ppl:   4.84; 5999 src tok/s; 2272 tgt tok/s;     35 s elapsed
+2019-08-11 16:08:06,050 [INFO :__main__] Epoch  7,   8976/  900/ 1346; acc:   0.00; loss: 122052.87; words: 78749; ppl:   4.71; 5848 src tok/s; 2245 tgt tok/s;     35 s elapsed
+2019-08-11 16:08:14,396 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:11:33,968 [WARNI:__main__] Set model to train mode
+2019-08-11 16:11:33,968 [INFO :__main__] Validation Score: 13.2398
+2019-08-11 16:11:33,968 [INFO :s2s.Optim] Bad_count: 1	Current lr: 0.00025
+2019-08-11 16:11:33,968 [INFO :s2s.Optim] Best metric: 0.1339380275571988
+2019-08-11 16:12:00,892 [INFO :__main__] Epoch  7,   9076/ 1000/ 1346; acc:   0.00; loss: 123988.36; words: 78976; ppl:   4.81; 876 src tok/s; 336 tgt tok/s;    235 s elapsed
+2019-08-11 16:12:35,901 [INFO :__main__] Epoch  7,   9176/ 1100/ 1346; acc:   0.00; loss: 121750.18; words: 77508; ppl:   4.81; 5786 src tok/s; 2214 tgt tok/s;     35 s elapsed
+2019-08-11 16:13:11,365 [INFO :__main__] Epoch  7,   9276/ 1200/ 1346; acc:   0.00; loss: 124405.42; words: 78662; ppl:   4.86; 5865 src tok/s; 2218 tgt tok/s;     35 s elapsed
+2019-08-11 16:13:46,184 [INFO :__main__] Epoch  7,   9376/ 1300/ 1346; acc:   0.00; loss: 124327.48; words: 78945; ppl:   4.83; 6048 src tok/s; 2267 tgt tok/s;     35 s elapsed
+2019-08-11 16:14:01,832 [INFO :__main__] Train perplexity: 4.75595
+2019-08-11 16:14:01,832 [INFO :__main__] Train accuracy: 0
+2019-08-11 16:14:01,833 [INFO :__main__] Saving checkpoint for epoch 7...
+2019-08-11 16:14:02,553 [INFO :__main__] 
+2019-08-11 16:14:02,553 [INFO :__main__] Shuffling...
+2019-08-11 16:14:30,185 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:17:44,533 [WARNI:__main__] Set model to train mode
+2019-08-11 16:17:44,534 [INFO :__main__] Validation Score: 13.4439
+2019-08-11 16:17:45,237 [INFO :s2s.Optim] Bad_count: 0	Current lr: 0.00025
+2019-08-11 16:17:45,238 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:17:54,076 [INFO :__main__] Epoch  8,   9522/  100/ 1346; acc:   0.00; loss: 104944.85; words: 78576; ppl:   3.80; 894 src tok/s; 341 tgt tok/s;    231 s elapsed
+2019-08-11 16:18:29,204 [INFO :__main__] Epoch  8,   9622/  200/ 1346; acc:   0.00; loss: 104333.70; words: 78478; ppl:   3.78; 5849 src tok/s; 2234 tgt tok/s;     35 s elapsed
+2019-08-11 16:19:04,417 [INFO :__main__] Epoch  8,   9722/  300/ 1346; acc:   0.00; loss: 107217.76; words: 78966; ppl:   3.89; 5843 src tok/s; 2243 tgt tok/s;     35 s elapsed
+2019-08-11 16:19:39,852 [INFO :__main__] Epoch  8,   9822/  400/ 1346; acc:   0.00; loss: 106014.31; words: 78544; ppl:   3.86; 5855 src tok/s; 2217 tgt tok/s;     35 s elapsed
+2019-08-11 16:20:14,259 [INFO :__main__] Epoch  8,   9922/  500/ 1346; acc:   0.00; loss: 105986.10; words: 78295; ppl:   3.87; 5999 src tok/s; 2276 tgt tok/s;     34 s elapsed
+2019-08-11 16:20:40,794 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:23:56,758 [WARNI:__main__] Set model to train mode
+2019-08-11 16:23:56,758 [INFO :__main__] Validation Score: 13.2645
+2019-08-11 16:23:56,758 [INFO :s2s.Optim] Bad_count: 1	Current lr: 0.00025
+2019-08-11 16:23:56,758 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:24:05,419 [INFO :__main__] Epoch  8,  10022/  600/ 1346; acc:   0.00; loss: 105336.01; words: 77487; ppl:   3.89; 876 src tok/s; 335 tgt tok/s;    231 s elapsed
+2019-08-11 16:24:40,890 [INFO :__main__] Epoch  8,  10122/  700/ 1346; acc:   0.00; loss: 108022.70; words: 78703; ppl:   3.95; 5794 src tok/s; 2219 tgt tok/s;     35 s elapsed
+2019-08-11 16:25:16,652 [INFO :__main__] Epoch  8,  10222/  800/ 1346; acc:   0.00; loss: 107821.33; words: 78615; ppl:   3.94; 5836 src tok/s; 2198 tgt tok/s;     36 s elapsed
+2019-08-11 16:25:52,337 [INFO :__main__] Epoch  8,  10322/  900/ 1346; acc:   0.00; loss: 110733.25; words: 79261; ppl:   4.04; 5771 src tok/s; 2221 tgt tok/s;     36 s elapsed
+2019-08-11 16:26:27,526 [INFO :__main__] Epoch  8,  10422/ 1000/ 1346; acc:   0.00; loss: 110322.75; words: 78873; ppl:   4.05; 5858 src tok/s; 2241 tgt tok/s;     35 s elapsed
+2019-08-11 16:26:55,700 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:30:12,015 [WARNI:__main__] Set model to train mode
+2019-08-11 16:30:12,016 [INFO :__main__] Validation Score: 13.1217
+2019-08-11 16:30:12,016 [INFO :s2s.Optim] Bad_count: 2	Current lr: 0.00025
+2019-08-11 16:30:12,016 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:30:20,799 [INFO :__main__] Epoch  8,  10522/ 1100/ 1346; acc:   0.00; loss: 109273.50; words: 79153; ppl:   3.98; 873 src tok/s; 339 tgt tok/s;    233 s elapsed
+2019-08-11 16:30:56,642 [INFO :__main__] Epoch  8,  10622/ 1200/ 1346; acc:   0.00; loss: 112517.44; words: 78903; ppl:   4.16; 5868 src tok/s; 2201 tgt tok/s;     36 s elapsed
+2019-08-11 16:31:31,555 [INFO :__main__] Epoch  8,  10722/ 1300/ 1346; acc:   0.00; loss: 108508.85; words: 78155; ppl:   4.01; 6007 src tok/s; 2239 tgt tok/s;     35 s elapsed
+2019-08-11 16:31:47,358 [INFO :__main__] Train perplexity: 3.94144
+2019-08-11 16:31:47,359 [INFO :__main__] Train accuracy: 0
+2019-08-11 16:31:47,359 [INFO :__main__] Saving checkpoint for epoch 8...
+2019-08-11 16:31:48,057 [INFO :__main__] 
+2019-08-11 16:31:48,057 [INFO :__main__] Shuffling...
+2019-08-11 16:32:24,058 [INFO :__main__] Epoch  9,  10868/  100/ 1346; acc:   0.00; loss: 96467.49; words: 78795; ppl:   3.40; 5783 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 16:32:58,734 [INFO :__main__] Epoch  9,  10968/  200/ 1346; acc:   0.00; loss: 96454.19; words: 78678; ppl:   3.41; 6010 src tok/s; 2269 tgt tok/s;     35 s elapsed
+2019-08-11 16:33:09,183 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:36:24,581 [WARNI:__main__] Set model to train mode
+2019-08-11 16:36:24,581 [INFO :__main__] Validation Score: 12.9845
+2019-08-11 16:36:24,581 [INFO :s2s.Optim] Bad_count: 3	Current lr: 0.00025
+2019-08-11 16:36:24,581 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:36:24,581 [INFO :s2s.Optim] Decaying learning rate to 0.000125
+2019-08-11 16:36:49,495 [INFO :__main__] Epoch  9,  11068/  300/ 1346; acc:   0.00; loss: 95389.03; words: 78494; ppl:   3.37; 893 src tok/s; 340 tgt tok/s;    231 s elapsed
+2019-08-11 16:37:23,980 [INFO :__main__] Epoch  9,  11168/  400/ 1346; acc:   0.00; loss: 96169.96; words: 78560; ppl:   3.40; 5979 src tok/s; 2278 tgt tok/s;     34 s elapsed
+2019-08-11 16:37:58,725 [INFO :__main__] Epoch  9,  11268/  500/ 1346; acc:   0.00; loss: 96078.93; words: 79219; ppl:   3.36; 6008 src tok/s; 2280 tgt tok/s;     35 s elapsed
+2019-08-11 16:38:33,581 [INFO :__main__] Epoch  9,  11368/  600/ 1346; acc:   0.00; loss: 96870.46; words: 78660; ppl:   3.43; 6039 src tok/s; 2257 tgt tok/s;     35 s elapsed
+2019-08-11 16:39:08,310 [INFO :__main__] Epoch  9,  11468/  700/ 1346; acc:   0.00; loss: 97106.84; words: 78149; ppl:   3.46; 5963 src tok/s; 2250 tgt tok/s;     35 s elapsed
+2019-08-11 16:39:18,767 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:42:35,316 [WARNI:__main__] Set model to train mode
+2019-08-11 16:42:35,317 [INFO :__main__] Validation Score: 12.9567
+2019-08-11 16:42:35,317 [INFO :s2s.Optim] Bad_count: 1	Current lr: 0.000125
+2019-08-11 16:42:35,317 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:42:59,968 [INFO :__main__] Epoch  9,  11568/  800/ 1346; acc:   0.00; loss: 96215.46; words: 78399; ppl:   3.41; 888 src tok/s; 338 tgt tok/s;    232 s elapsed
+2019-08-11 16:43:35,233 [INFO :__main__] Epoch  9,  11668/  900/ 1346; acc:   0.00; loss: 96060.06; words: 78474; ppl:   3.40; 5831 src tok/s; 2225 tgt tok/s;     35 s elapsed
+2019-08-11 16:44:10,290 [INFO :__main__] Epoch  9,  11768/ 1000/ 1346; acc:   0.00; loss: 98625.57; words: 78537; ppl:   3.51; 5880 src tok/s; 2240 tgt tok/s;     35 s elapsed
+2019-08-11 16:44:45,100 [INFO :__main__] Epoch  9,  11868/ 1100/ 1346; acc:   0.00; loss: 99496.42; words: 78985; ppl:   3.52; 6010 src tok/s; 2269 tgt tok/s;     35 s elapsed
+2019-08-11 16:45:19,767 [INFO :__main__] Epoch  9,  11968/ 1200/ 1346; acc:   0.00; loss: 96038.91; words: 78497; ppl:   3.40; 5981 src tok/s; 2264 tgt tok/s;     35 s elapsed
+2019-08-11 16:45:30,249 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:48:46,091 [WARNI:__main__] Set model to train mode
+2019-08-11 16:48:46,092 [INFO :__main__] Validation Score: 13.0704
+2019-08-11 16:48:46,092 [INFO :s2s.Optim] Bad_count: 2	Current lr: 0.000125
+2019-08-11 16:48:46,092 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:49:11,220 [INFO :__main__] Epoch  9,  12068/ 1300/ 1346; acc:   0.00; loss: 98898.17; words: 78795; ppl:   3.51; 882 src tok/s; 340 tgt tok/s;    231 s elapsed
+2019-08-11 16:49:27,335 [INFO :__main__] Train perplexity: 3.4302
+2019-08-11 16:49:27,336 [INFO :__main__] Train accuracy: 0
+2019-08-11 16:49:27,336 [INFO :__main__] Saving checkpoint for epoch 9...
+2019-08-11 16:49:28,040 [INFO :__main__] 
+2019-08-11 16:49:28,040 [INFO :__main__] Shuffling...
+2019-08-11 16:50:03,036 [INFO :__main__] Epoch 10,  12214/  100/ 1346; acc:   0.00; loss: 85975.94; words: 77590; ppl:   3.03; 6088 src tok/s; 2282 tgt tok/s;     34 s elapsed
+2019-08-11 16:50:37,720 [INFO :__main__] Epoch 10,  12314/  200/ 1346; acc:   0.00; loss: 87089.06; words: 78403; ppl:   3.04; 6005 src tok/s; 2261 tgt tok/s;     35 s elapsed
+2019-08-11 16:51:12,278 [INFO :__main__] Epoch 10,  12414/  300/ 1346; acc:   0.00; loss: 88299.36; words: 78888; ppl:   3.06; 6038 src tok/s; 2283 tgt tok/s;     35 s elapsed
+2019-08-11 16:51:42,044 [WARNI:__main__] Set model to eval mode
+2019-08-11 16:54:58,378 [WARNI:__main__] Set model to train mode
+2019-08-11 16:54:58,378 [INFO :__main__] Validation Score: 12.8128
+2019-08-11 16:54:58,378 [INFO :s2s.Optim] Bad_count: 3	Current lr: 0.000125
+2019-08-11 16:54:58,378 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 16:54:58,378 [INFO :s2s.Optim] Decaying learning rate to 6.25e-05
+2019-08-11 16:55:04,212 [INFO :__main__] Epoch 10,  12514/  400/ 1346; acc:   0.00; loss: 88818.88; words: 78468; ppl:   3.10; 876 src tok/s; 338 tgt tok/s;    232 s elapsed
+2019-08-11 16:55:39,464 [INFO :__main__] Epoch 10,  12614/  500/ 1346; acc:   0.00; loss: 88274.97; words: 78632; ppl:   3.07; 5858 src tok/s; 2231 tgt tok/s;     35 s elapsed
+2019-08-11 16:56:13,889 [INFO :__main__] Epoch 10,  12714/  600/ 1346; acc:   0.00; loss: 90845.66; words: 79353; ppl:   3.14; 6039 src tok/s; 2305 tgt tok/s;     34 s elapsed
+2019-08-11 16:56:49,749 [INFO :__main__] Epoch 10,  12814/  700/ 1346; acc:   0.00; loss: 88826.17; words: 78618; ppl:   3.10; 5862 src tok/s; 2192 tgt tok/s;     36 s elapsed
+2019-08-11 16:57:24,387 [INFO :__main__] Epoch 10,  12914/  800/ 1346; acc:   0.00; loss: 88854.22; words: 78647; ppl:   3.09; 6054 src tok/s; 2271 tgt tok/s;     35 s elapsed
+2019-08-11 16:57:53,429 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:01:08,877 [WARNI:__main__] Set model to train mode
+2019-08-11 17:01:08,877 [INFO :__main__] Validation Score: 12.7361
+2019-08-11 17:01:08,877 [INFO :s2s.Optim] Bad_count: 1	Current lr: 6.25e-05
+2019-08-11 17:01:08,877 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:01:14,427 [INFO :__main__] Epoch 10,  13014/  900/ 1346; acc:   0.00; loss: 89227.87; words: 78391; ppl:   3.12; 880 src tok/s; 341 tgt tok/s;    230 s elapsed
+2019-08-11 17:01:49,767 [INFO :__main__] Epoch 10,  13114/ 1000/ 1346; acc:   0.00; loss: 91683.27; words: 78915; ppl:   3.20; 5828 src tok/s; 2233 tgt tok/s;     35 s elapsed
+2019-08-11 17:02:24,811 [INFO :__main__] Epoch 10,  13214/ 1100/ 1346; acc:   0.00; loss: 90755.52; words: 78763; ppl:   3.17; 5802 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 17:03:00,728 [INFO :__main__] Epoch 10,  13314/ 1200/ 1346; acc:   0.00; loss: 90503.64; words: 78757; ppl:   3.16; 5860 src tok/s; 2193 tgt tok/s;     36 s elapsed
+2019-08-11 17:03:35,875 [INFO :__main__] Epoch 10,  13414/ 1300/ 1346; acc:   0.00; loss: 88246.22; words: 78238; ppl:   3.09; 5812 src tok/s; 2226 tgt tok/s;     35 s elapsed
+2019-08-11 17:03:52,047 [INFO :__main__] Train perplexity: 3.10517
+2019-08-11 17:03:52,048 [INFO :__main__] Train accuracy: 0
+2019-08-11 17:03:52,048 [INFO :__main__] Saving checkpoint for epoch 10...
+2019-08-11 17:03:52,774 [INFO :__main__] 
+2019-08-11 17:03:52,774 [INFO :__main__] Shuffling...
+2019-08-11 17:04:07,438 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:07:20,701 [WARNI:__main__] Set model to train mode
+2019-08-11 17:07:20,701 [INFO :__main__] Validation Score: 12.853
+2019-08-11 17:07:20,701 [INFO :s2s.Optim] Bad_count: 2	Current lr: 6.25e-05
+2019-08-11 17:07:20,701 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:07:42,507 [INFO :__main__] Epoch 11,  13560/  100/ 1346; acc:   0.00; loss: 84068.00; words: 78760; ppl:   2.91; 889 src tok/s; 344 tgt tok/s;    229 s elapsed
+2019-08-11 17:08:17,959 [INFO :__main__] Epoch 11,  13660/  200/ 1346; acc:   0.00; loss: 84998.60; words: 79077; ppl:   2.93; 5798 src tok/s; 2231 tgt tok/s;     35 s elapsed
+2019-08-11 17:08:52,121 [INFO :__main__] Epoch 11,  13760/  300/ 1346; acc:   0.00; loss: 82500.98; words: 78567; ppl:   2.86; 5977 src tok/s; 2300 tgt tok/s;     34 s elapsed
+2019-08-11 17:09:26,970 [INFO :__main__] Epoch 11,  13860/  400/ 1346; acc:   0.00; loss: 84685.98; words: 78738; ppl:   2.93; 6054 src tok/s; 2259 tgt tok/s;     35 s elapsed
+2019-08-11 17:10:02,239 [INFO :__main__] Epoch 11,  13960/  500/ 1346; acc:   0.00; loss: 84047.07; words: 78489; ppl:   2.92; 5828 src tok/s; 2225 tgt tok/s;     35 s elapsed
+2019-08-11 17:10:16,629 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:13:13,550 [WARNI:__main__] Set model to train mode
+2019-08-11 17:13:13,550 [INFO :__main__] Validation Score: 12.7453
+2019-08-11 17:13:13,550 [INFO :s2s.Optim] Bad_count: 3	Current lr: 6.25e-05
+2019-08-11 17:13:13,550 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:13:13,550 [INFO :s2s.Optim] Decaying learning rate to 3.125e-05
+2019-08-11 17:13:34,825 [INFO :__main__] Epoch 11,  14060/  600/ 1346; acc:   0.00; loss: 84213.92; words: 78487; ppl:   2.92; 967 src tok/s; 369 tgt tok/s;    213 s elapsed
+2019-08-11 17:14:10,189 [INFO :__main__] Epoch 11,  14160/  700/ 1346; acc:   0.00; loss: 85192.65; words: 78543; ppl:   2.96; 5849 src tok/s; 2221 tgt tok/s;     35 s elapsed
+2019-08-11 17:14:44,620 [INFO :__main__] Epoch 11,  14260/  800/ 1346; acc:   0.00; loss: 85062.29; words: 78258; ppl:   2.97; 6055 src tok/s; 2273 tgt tok/s;     34 s elapsed
+2019-08-11 17:15:19,984 [INFO :__main__] Epoch 11,  14360/  900/ 1346; acc:   0.00; loss: 85729.26; words: 78844; ppl:   2.97; 5849 src tok/s; 2230 tgt tok/s;     35 s elapsed
+2019-08-11 17:15:55,036 [INFO :__main__] Epoch 11,  14460/ 1000/ 1346; acc:   0.00; loss: 83907.99; words: 78791; ppl:   2.90; 5825 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 17:16:08,416 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:19:18,994 [WARNI:__main__] Set model to train mode
+2019-08-11 17:19:18,994 [INFO :__main__] Validation Score: 12.8074
+2019-08-11 17:19:18,994 [INFO :s2s.Optim] Bad_count: 1	Current lr: 3.125e-05
+2019-08-11 17:19:18,994 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:19:39,706 [INFO :__main__] Epoch 11,  14560/ 1100/ 1346; acc:   0.00; loss: 85662.42; words: 78166; ppl:   2.99; 897 src tok/s; 348 tgt tok/s;    225 s elapsed
+2019-08-11 17:20:14,229 [INFO :__main__] Epoch 11,  14660/ 1200/ 1346; acc:   0.00; loss: 84487.04; words: 78654; ppl:   2.93; 6038 src tok/s; 2278 tgt tok/s;     35 s elapsed
+2019-08-11 17:20:48,574 [INFO :__main__] Epoch 11,  14760/ 1300/ 1346; acc:   0.00; loss: 84687.32; words: 78565; ppl:   2.94; 6012 src tok/s; 2288 tgt tok/s;     34 s elapsed
+2019-08-11 17:21:04,207 [INFO :__main__] Train perplexity: 2.93153
+2019-08-11 17:21:04,208 [INFO :__main__] Train accuracy: 0
+2019-08-11 17:21:04,208 [INFO :__main__] Saving checkpoint for epoch 11...
+2019-08-11 17:21:04,966 [INFO :__main__] 
+2019-08-11 17:21:04,966 [INFO :__main__] Shuffling...
+2019-08-11 17:21:40,480 [INFO :__main__] Epoch 12,  14906/  100/ 1346; acc:   0.00; loss: 81381.09; words: 78804; ppl:   2.81; 5997 src tok/s; 2280 tgt tok/s;     35 s elapsed
+2019-08-11 17:22:12,337 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:24:52,602 [WARNI:__main__] Set model to train mode
+2019-08-11 17:24:52,602 [INFO :__main__] Validation Score: 12.7556
+2019-08-11 17:24:52,602 [INFO :s2s.Optim] Bad_count: 2	Current lr: 3.125e-05
+2019-08-11 17:24:52,602 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:24:54,928 [INFO :__main__] Epoch 12,  15006/  200/ 1346; acc:   0.00; loss: 83002.82; words: 79099; ppl:   2.86; 1060 src tok/s; 407 tgt tok/s;    194 s elapsed
+2019-08-11 17:25:29,624 [INFO :__main__] Epoch 12,  15106/  300/ 1346; acc:   0.00; loss: 82082.84; words: 78967; ppl:   2.83; 6064 src tok/s; 2276 tgt tok/s;     35 s elapsed
+2019-08-11 17:26:04,391 [INFO :__main__] Epoch 12,  15206/  400/ 1346; acc:   0.00; loss: 80942.82; words: 78708; ppl:   2.80; 6010 src tok/s; 2264 tgt tok/s;     35 s elapsed
+2019-08-11 17:26:39,029 [INFO :__main__] Epoch 12,  15306/  500/ 1346; acc:   0.00; loss: 79998.25; words: 78202; ppl:   2.78; 5947 src tok/s; 2258 tgt tok/s;     35 s elapsed
+2019-08-11 17:27:13,519 [INFO :__main__] Epoch 12,  15406/  600/ 1346; acc:   0.00; loss: 81995.28; words: 78302; ppl:   2.85; 5976 src tok/s; 2270 tgt tok/s;     34 s elapsed
+2019-08-11 17:27:46,079 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:30:27,200 [WARNI:__main__] Set model to train mode
+2019-08-11 17:30:27,200 [INFO :__main__] Validation Score: 12.6505
+2019-08-11 17:30:27,200 [INFO :s2s.Optim] Bad_count: 3	Current lr: 3.125e-05
+2019-08-11 17:30:27,200 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:30:27,200 [INFO :s2s.Optim] Decaying learning rate to 1.5625e-05
+2019-08-11 17:30:29,529 [INFO :__main__] Epoch 12,  15506/  700/ 1346; acc:   0.00; loss: 81440.29; words: 78895; ppl:   2.81; 1046 src tok/s; 403 tgt tok/s;    196 s elapsed
+2019-08-11 17:31:04,259 [INFO :__main__] Epoch 12,  15606/  800/ 1346; acc:   0.00; loss: 81486.87; words: 78704; ppl:   2.82; 5993 src tok/s; 2266 tgt tok/s;     35 s elapsed
+2019-08-11 17:31:39,030 [INFO :__main__] Epoch 12,  15706/  900/ 1346; acc:   0.00; loss: 82229.59; words: 78420; ppl:   2.85; 5996 src tok/s; 2255 tgt tok/s;     35 s elapsed
+2019-08-11 17:32:13,908 [INFO :__main__] Epoch 12,  15806/ 1000/ 1346; acc:   0.00; loss: 80951.41; words: 78388; ppl:   2.81; 5978 src tok/s; 2248 tgt tok/s;     35 s elapsed
+2019-08-11 17:32:48,575 [INFO :__main__] Epoch 12,  15906/ 1100/ 1346; acc:   0.00; loss: 83193.28; words: 78532; ppl:   2.88; 5978 src tok/s; 2265 tgt tok/s;     35 s elapsed
+2019-08-11 17:33:20,951 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:36:01,173 [WARNI:__main__] Set model to train mode
+2019-08-11 17:36:01,173 [INFO :__main__] Validation Score: 12.7108
+2019-08-11 17:36:01,174 [INFO :s2s.Optim] Bad_count: 1	Current lr: 1.5625e-05
+2019-08-11 17:36:01,174 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:36:03,990 [INFO :__main__] Epoch 12,  16006/ 1200/ 1346; acc:   0.00; loss: 83565.05; words: 78559; ppl:   2.90; 1061 src tok/s; 402 tgt tok/s;    195 s elapsed
+2019-08-11 17:36:38,323 [INFO :__main__] Epoch 12,  16106/ 1300/ 1346; acc:   0.00; loss: 82585.88; words: 78725; ppl:   2.85; 5938 src tok/s; 2293 tgt tok/s;     34 s elapsed
+2019-08-11 17:36:54,082 [INFO :__main__] Train perplexity: 2.83688
+2019-08-11 17:36:54,083 [INFO :__main__] Train accuracy: 0
+2019-08-11 17:36:54,083 [INFO :__main__] Saving checkpoint for epoch 12...
+2019-08-11 17:36:54,772 [INFO :__main__] 
+2019-08-11 17:36:54,773 [INFO :__main__] Shuffling...
+2019-08-11 17:37:29,566 [INFO :__main__] Epoch 13,  16252/  100/ 1346; acc:   0.00; loss: 80194.24; words: 78654; ppl:   2.77; 6240 src tok/s; 2326 tgt tok/s;     34 s elapsed
+2019-08-11 17:38:05,357 [INFO :__main__] Epoch 13,  16352/  200/ 1346; acc:   0.00; loss: 80718.58; words: 78777; ppl:   2.79; 5818 src tok/s; 2201 tgt tok/s;     36 s elapsed
+2019-08-11 17:38:39,977 [INFO :__main__] Epoch 13,  16452/  300/ 1346; acc:   0.00; loss: 81015.26; words: 78621; ppl:   2.80; 6030 src tok/s; 2271 tgt tok/s;     35 s elapsed
+2019-08-11 17:38:56,453 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:41:37,218 [WARNI:__main__] Set model to train mode
+2019-08-11 17:41:37,218 [INFO :__main__] Validation Score: 12.7235
+2019-08-11 17:41:37,218 [INFO :s2s.Optim] Bad_count: 2	Current lr: 1.5625e-05
+2019-08-11 17:41:37,218 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:41:55,275 [INFO :__main__] Epoch 13,  16552/  400/ 1346; acc:   0.00; loss: 78546.66; words: 78015; ppl:   2.74; 1034 src tok/s; 399 tgt tok/s;    195 s elapsed
+2019-08-11 17:42:30,281 [INFO :__main__] Epoch 13,  16652/  500/ 1346; acc:   0.00; loss: 81001.98; words: 78982; ppl:   2.79; 5853 src tok/s; 2256 tgt tok/s;     35 s elapsed
+2019-08-11 17:43:04,792 [INFO :__main__] Epoch 13,  16752/  600/ 1346; acc:   0.00; loss: 80590.45; words: 78575; ppl:   2.79; 5980 src tok/s; 2277 tgt tok/s;     35 s elapsed
+2019-08-11 17:43:39,363 [INFO :__main__] Epoch 13,  16852/  700/ 1346; acc:   0.00; loss: 82555.43; words: 79037; ppl:   2.84; 6019 src tok/s; 2286 tgt tok/s;     35 s elapsed
+2019-08-11 17:44:14,609 [INFO :__main__] Epoch 13,  16952/  800/ 1346; acc:   0.00; loss: 80919.49; words: 78807; ppl:   2.79; 5837 src tok/s; 2236 tgt tok/s;     35 s elapsed
+2019-08-11 17:44:30,799 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:47:12,493 [WARNI:__main__] Set model to train mode
+2019-08-11 17:47:12,493 [INFO :__main__] Validation Score: 12.6368
+2019-08-11 17:47:12,493 [INFO :s2s.Optim] Bad_count: 3	Current lr: 1.5625e-05
+2019-08-11 17:47:12,493 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:47:12,494 [INFO :s2s.Optim] Decaying learning rate to 7.8125e-06
+2019-08-11 17:47:30,446 [INFO :__main__] Epoch 13,  17052/  900/ 1346; acc:   0.00; loss: 81083.77; words: 78569; ppl:   2.81; 1040 src tok/s; 401 tgt tok/s;    196 s elapsed
+2019-08-11 17:48:04,999 [INFO :__main__] Epoch 13,  17152/ 1000/ 1346; acc:   0.00; loss: 80868.11; words: 78853; ppl:   2.79; 5995 src tok/s; 2282 tgt tok/s;     35 s elapsed
+2019-08-11 17:48:40,193 [INFO :__main__] Epoch 13,  17252/ 1100/ 1346; acc:   0.00; loss: 80429.55; words: 78308; ppl:   2.79; 5837 src tok/s; 2225 tgt tok/s;     35 s elapsed
+2019-08-11 17:49:14,289 [INFO :__main__] Epoch 13,  17352/ 1200/ 1346; acc:   0.00; loss: 78441.25; words: 78059; ppl:   2.73; 5994 src tok/s; 2289 tgt tok/s;     34 s elapsed
+2019-08-11 17:49:48,597 [INFO :__main__] Epoch 13,  17452/ 1300/ 1346; acc:   0.00; loss: 79607.13; words: 78720; ppl:   2.75; 6038 src tok/s; 2295 tgt tok/s;     34 s elapsed
+2019-08-11 17:50:04,771 [INFO :__main__] Train perplexity: 2.78472
+2019-08-11 17:50:04,771 [INFO :__main__] Train accuracy: 0
+2019-08-11 17:50:04,771 [INFO :__main__] Saving checkpoint for epoch 13...
+2019-08-11 17:50:05,487 [INFO :__main__] 
+2019-08-11 17:50:05,488 [INFO :__main__] Shuffling...
+2019-08-11 17:50:06,661 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:53:03,813 [WARNI:__main__] Set model to train mode
+2019-08-11 17:53:03,814 [INFO :__main__] Validation Score: 12.6477
+2019-08-11 17:53:03,814 [INFO :s2s.Optim] Bad_count: 1	Current lr: 7.8125e-06
+2019-08-11 17:53:03,814 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:53:38,276 [INFO :__main__] Epoch 14,  17598/  100/ 1346; acc:   0.00; loss: 79586.97; words: 78564; ppl:   2.75; 979 src tok/s; 371 tgt tok/s;    212 s elapsed
+2019-08-11 17:54:12,823 [INFO :__main__] Epoch 14,  17698/  200/ 1346; acc:   0.00; loss: 80534.58; words: 78718; ppl:   2.78; 5997 src tok/s; 2279 tgt tok/s;     35 s elapsed
+2019-08-11 17:54:47,222 [INFO :__main__] Epoch 14,  17798/  300/ 1346; acc:   0.00; loss: 78642.41; words: 78768; ppl:   2.71; 6000 src tok/s; 2290 tgt tok/s;     34 s elapsed
+2019-08-11 17:55:22,013 [INFO :__main__] Epoch 14,  17898/  400/ 1346; acc:   0.00; loss: 79973.48; words: 78319; ppl:   2.78; 5976 src tok/s; 2251 tgt tok/s;     35 s elapsed
+2019-08-11 17:55:56,134 [INFO :__main__] Epoch 14,  17998/  500/ 1346; acc:   0.00; loss: 79244.26; words: 77943; ppl:   2.76; 5936 src tok/s; 2284 tgt tok/s;     34 s elapsed
+2019-08-11 17:55:56,297 [WARNI:__main__] Set model to eval mode
+2019-08-11 17:58:37,968 [WARNI:__main__] Set model to train mode
+2019-08-11 17:58:37,969 [INFO :__main__] Validation Score: 12.6378
+2019-08-11 17:58:37,969 [INFO :s2s.Optim] Bad_count: 2	Current lr: 7.8125e-06
+2019-08-11 17:58:37,969 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 17:59:11,823 [INFO :__main__] Epoch 14,  18098/  600/ 1346; acc:   0.00; loss: 79804.56; words: 78664; ppl:   2.76; 1046 src tok/s; 402 tgt tok/s;    196 s elapsed
+2019-08-11 17:59:47,028 [INFO :__main__] Epoch 14,  18198/  700/ 1346; acc:   0.00; loss: 78237.83; words: 78446; ppl:   2.71; 5839 src tok/s; 2228 tgt tok/s;     35 s elapsed
+2019-08-11 18:00:21,444 [INFO :__main__] Epoch 14,  18298/  800/ 1346; acc:   0.00; loss: 79660.34; words: 78550; ppl:   2.76; 5973 src tok/s; 2282 tgt tok/s;     34 s elapsed
+2019-08-11 18:00:55,710 [INFO :__main__] Epoch 14,  18398/  900/ 1346; acc:   0.00; loss: 80329.33; words: 79145; ppl:   2.76; 6043 src tok/s; 2310 tgt tok/s;     34 s elapsed
+2019-08-11 18:01:31,425 [INFO :__main__] Epoch 14,  18498/ 1000/ 1346; acc:   0.00; loss: 79979.91; words: 78769; ppl:   2.76; 5820 src tok/s; 2206 tgt tok/s;     36 s elapsed
+2019-08-11 18:01:31,597 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:04:13,436 [WARNI:__main__] Set model to train mode
+2019-08-11 18:04:13,437 [INFO :__main__] Validation Score: 12.6066
+2019-08-11 18:04:13,437 [INFO :s2s.Optim] Bad_count: 3	Current lr: 7.8125e-06
+2019-08-11 18:04:13,437 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:04:13,437 [INFO :s2s.Optim] Decaying learning rate to 3.90625e-06
+2019-08-11 18:04:46,928 [INFO :__main__] Epoch 14,  18598/ 1100/ 1346; acc:   0.00; loss: 80091.80; words: 78533; ppl:   2.77; 1048 src tok/s; 402 tgt tok/s;    196 s elapsed
+2019-08-11 18:05:21,967 [INFO :__main__] Epoch 14,  18698/ 1200/ 1346; acc:   0.00; loss: 79783.43; words: 78333; ppl:   2.77; 5912 src tok/s; 2236 tgt tok/s;     35 s elapsed
+2019-08-11 18:05:56,575 [INFO :__main__] Epoch 14,  18798/ 1300/ 1346; acc:   0.00; loss: 79920.42; words: 78593; ppl:   2.76; 5946 src tok/s; 2271 tgt tok/s;     35 s elapsed
+2019-08-11 18:06:12,237 [INFO :__main__] Train perplexity: 2.75953
+2019-08-11 18:06:12,238 [INFO :__main__] Train accuracy: 0
+2019-08-11 18:06:12,238 [INFO :__main__] Saving checkpoint for epoch 14...
+2019-08-11 18:06:12,932 [INFO :__main__] 
+2019-08-11 18:06:12,932 [INFO :__main__] Shuffling...
+2019-08-11 18:06:48,333 [INFO :__main__] Epoch 15,  18944/  100/ 1346; acc:   0.00; loss: 79761.32; words: 78989; ppl:   2.74; 6030 src tok/s; 2293 tgt tok/s;     34 s elapsed
+2019-08-11 18:07:07,100 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:09:48,612 [WARNI:__main__] Set model to train mode
+2019-08-11 18:09:48,612 [INFO :__main__] Validation Score: 12.6657
+2019-08-11 18:09:48,612 [INFO :s2s.Optim] Bad_count: 1	Current lr: 3.90625e-06
+2019-08-11 18:09:48,612 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:10:04,157 [INFO :__main__] Epoch 15,  19044/  200/ 1346; acc:   0.00; loss: 78874.12; words: 78670; ppl:   2.73; 1045 src tok/s; 402 tgt tok/s;    196 s elapsed
+2019-08-11 18:10:38,358 [INFO :__main__] Epoch 15,  19144/  300/ 1346; acc:   0.00; loss: 77425.73; words: 78508; ppl:   2.68; 6024 src tok/s; 2296 tgt tok/s;     34 s elapsed
+2019-08-11 18:11:13,303 [INFO :__main__] Epoch 15,  19244/  400/ 1346; acc:   0.00; loss: 79362.87; words: 78429; ppl:   2.75; 5941 src tok/s; 2244 tgt tok/s;     35 s elapsed
+2019-08-11 18:11:48,367 [INFO :__main__] Epoch 15,  19344/  500/ 1346; acc:   0.00; loss: 79656.60; words: 78948; ppl:   2.74; 5839 src tok/s; 2252 tgt tok/s;     35 s elapsed
+2019-08-11 18:12:22,673 [INFO :__main__] Epoch 15,  19444/  600/ 1346; acc:   0.00; loss: 79276.39; words: 78318; ppl:   2.75; 5946 src tok/s; 2283 tgt tok/s;     34 s elapsed
+2019-08-11 18:12:41,562 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:15:24,002 [WARNI:__main__] Set model to train mode
+2019-08-11 18:15:24,003 [INFO :__main__] Validation Score: 12.6085
+2019-08-11 18:15:24,003 [INFO :s2s.Optim] Bad_count: 2	Current lr: 3.90625e-06
+2019-08-11 18:15:24,003 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:15:39,875 [INFO :__main__] Epoch 15,  19544/  700/ 1346; acc:   0.00; loss: 79330.19; words: 78465; ppl:   2.75; 1039 src tok/s; 398 tgt tok/s;    197 s elapsed
+2019-08-11 18:16:14,774 [INFO :__main__] Epoch 15,  19644/  800/ 1346; acc:   0.00; loss: 79625.00; words: 78267; ppl:   2.77; 6004 src tok/s; 2243 tgt tok/s;     35 s elapsed
+2019-08-11 18:16:49,169 [INFO :__main__] Epoch 15,  19744/  900/ 1346; acc:   0.00; loss: 77696.44; words: 78637; ppl:   2.69; 5977 src tok/s; 2286 tgt tok/s;     34 s elapsed
+2019-08-11 18:17:24,508 [INFO :__main__] Epoch 15,  19844/ 1000/ 1346; acc:   0.00; loss: 78901.34; words: 78387; ppl:   2.74; 5869 src tok/s; 2218 tgt tok/s;     35 s elapsed
+2019-08-11 18:17:59,881 [INFO :__main__] Epoch 15,  19944/ 1100/ 1346; acc:   0.00; loss: 78359.16; words: 78059; ppl:   2.73; 5767 src tok/s; 2207 tgt tok/s;     35 s elapsed
+2019-08-11 18:18:19,036 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:21:00,404 [WARNI:__main__] Set model to train mode
+2019-08-11 18:21:00,404 [INFO :__main__] Validation Score: 12.6179
+2019-08-11 18:21:00,404 [INFO :s2s.Optim] Bad_count: 3	Current lr: 3.90625e-06
+2019-08-11 18:21:00,404 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:21:00,404 [INFO :s2s.Optim] Decaying learning rate to 1.95313e-06
+2019-08-11 18:21:16,254 [INFO :__main__] Epoch 15,  20044/ 1200/ 1346; acc:   0.00; loss: 80669.82; words: 78847; ppl:   2.78; 1049 src tok/s; 402 tgt tok/s;    196 s elapsed
+2019-08-11 18:21:50,562 [INFO :__main__] Epoch 15,  20144/ 1300/ 1346; acc:   0.00; loss: 81487.88; words: 79318; ppl:   2.79; 6061 src tok/s; 2312 tgt tok/s;     34 s elapsed
+2019-08-11 18:22:06,326 [INFO :__main__] Train perplexity: 2.74334
+2019-08-11 18:22:06,327 [INFO :__main__] Train accuracy: 0
+2019-08-11 18:22:06,327 [INFO :__main__] Saving checkpoint for epoch 15...
+2019-08-11 18:22:07,040 [INFO :__main__] 
+2019-08-11 18:22:07,040 [INFO :__main__] Shuffling...
+2019-08-11 18:22:42,609 [INFO :__main__] Epoch 16,  20290/  100/ 1346; acc:   0.00; loss: 79512.27; words: 78123; ppl:   2.77; 5973 src tok/s; 2258 tgt tok/s;     35 s elapsed
+2019-08-11 18:23:16,760 [INFO :__main__] Epoch 16,  20390/  200/ 1346; acc:   0.00; loss: 78942.84; words: 78448; ppl:   2.74; 6056 src tok/s; 2297 tgt tok/s;     34 s elapsed
+2019-08-11 18:23:52,516 [INFO :__main__] Epoch 16,  20490/  300/ 1346; acc:   0.00; loss: 79954.45; words: 78928; ppl:   2.75; 5781 src tok/s; 2207 tgt tok/s;     36 s elapsed
+2019-08-11 18:23:55,525 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:27:03,837 [WARNI:__main__] Set model to train mode
+2019-08-11 18:27:03,837 [INFO :__main__] Validation Score: 12.6233
+2019-08-11 18:27:03,837 [INFO :s2s.Optim] Bad_count: 1	Current lr: 1.953125e-06
+2019-08-11 18:27:03,838 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:27:35,223 [INFO :__main__] Epoch 16,  20590/  400/ 1346; acc:   0.00; loss: 78366.86; words: 77995; ppl:   2.73; 924 src tok/s; 350 tgt tok/s;    223 s elapsed
+2019-08-11 18:28:10,033 [INFO :__main__] Epoch 16,  20690/  500/ 1346; acc:   0.00; loss: 79384.73; words: 78809; ppl:   2.74; 5994 src tok/s; 2264 tgt tok/s;     35 s elapsed
+2019-08-11 18:28:44,488 [INFO :__main__] Epoch 16,  20790/  600/ 1346; acc:   0.00; loss: 78240.91; words: 78564; ppl:   2.71; 6027 src tok/s; 2280 tgt tok/s;     34 s elapsed
+2019-08-11 18:29:18,786 [INFO :__main__] Epoch 16,  20890/  700/ 1346; acc:   0.00; loss: 80403.15; words: 79241; ppl:   2.76; 6041 src tok/s; 2310 tgt tok/s;     34 s elapsed
+2019-08-11 18:29:54,286 [INFO :__main__] Epoch 16,  20990/  800/ 1346; acc:   0.00; loss: 78893.41; words: 78749; ppl:   2.72; 5816 src tok/s; 2218 tgt tok/s;     35 s elapsed
+2019-08-11 18:29:57,420 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:32:38,840 [WARNI:__main__] Set model to train mode
+2019-08-11 18:32:38,840 [INFO :__main__] Validation Score: 12.6297
+2019-08-11 18:32:38,840 [INFO :s2s.Optim] Bad_count: 2	Current lr: 1.953125e-06
+2019-08-11 18:32:38,840 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:33:10,702 [INFO :__main__] Epoch 16,  21090/  900/ 1346; acc:   0.00; loss: 79842.01; words: 78597; ppl:   2.76; 1038 src tok/s; 400 tgt tok/s;    196 s elapsed
+2019-08-11 18:33:45,587 [INFO :__main__] Epoch 16,  21190/ 1000/ 1346; acc:   0.00; loss: 78404.59; words: 78628; ppl:   2.71; 5967 src tok/s; 2254 tgt tok/s;     35 s elapsed
+2019-08-11 18:34:20,763 [INFO :__main__] Epoch 16,  21290/ 1100/ 1346; acc:   0.00; loss: 78870.98; words: 78610; ppl:   2.73; 5809 src tok/s; 2235 tgt tok/s;     35 s elapsed
+2019-08-11 18:34:54,976 [INFO :__main__] Epoch 16,  21390/ 1200/ 1346; acc:   0.00; loss: 78063.20; words: 78292; ppl:   2.71; 6030 src tok/s; 2288 tgt tok/s;     34 s elapsed
+2019-08-11 18:35:29,786 [INFO :__main__] Epoch 16,  21490/ 1300/ 1346; acc:   0.00; loss: 79745.18; words: 78755; ppl:   2.75; 6009 src tok/s; 2263 tgt tok/s;     35 s elapsed
+2019-08-11 18:35:32,887 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:38:13,644 [WARNI:__main__] Set model to train mode
+2019-08-11 18:38:13,645 [INFO :__main__] Validation Score: 12.6321
+2019-08-11 18:38:13,645 [INFO :s2s.Optim] Bad_count: 3	Current lr: 1.953125e-06
+2019-08-11 18:38:13,645 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:38:13,645 [INFO :s2s.Optim] Decaying learning rate to 9.76563e-07
+2019-08-11 18:38:26,418 [INFO :__main__] Train perplexity: 2.73707
+2019-08-11 18:38:26,419 [INFO :__main__] Train accuracy: 0
+2019-08-11 18:38:26,419 [INFO :__main__] Saving checkpoint for epoch 16...
+2019-08-11 18:38:27,122 [INFO :__main__] 
+2019-08-11 18:38:27,122 [INFO :__main__] Shuffling...
+2019-08-11 18:39:02,730 [INFO :__main__] Epoch 17,  21636/  100/ 1346; acc:   0.00; loss: 77163.81; words: 78244; ppl:   2.68; 5953 src tok/s; 2260 tgt tok/s;     35 s elapsed
+2019-08-11 18:39:37,198 [INFO :__main__] Epoch 17,  21736/  200/ 1346; acc:   0.00; loss: 79688.22; words: 77955; ppl:   2.78; 5883 src tok/s; 2262 tgt tok/s;     34 s elapsed
+2019-08-11 18:40:11,886 [INFO :__main__] Epoch 17,  21836/  300/ 1346; acc:   0.00; loss: 78940.13; words: 78742; ppl:   2.73; 6021 src tok/s; 2270 tgt tok/s;     35 s elapsed
+2019-08-11 18:40:47,135 [INFO :__main__] Epoch 17,  21936/  400/ 1346; acc:   0.00; loss: 77907.85; words: 78801; ppl:   2.69; 5863 src tok/s; 2236 tgt tok/s;     35 s elapsed
+2019-08-11 18:41:09,034 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:43:49,780 [WARNI:__main__] Set model to train mode
+2019-08-11 18:43:49,781 [INFO :__main__] Validation Score: 12.6437
+2019-08-11 18:43:49,781 [INFO :s2s.Optim] Bad_count: 1	Current lr: 9.765625e-07
+2019-08-11 18:43:49,781 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:44:02,520 [INFO :__main__] Epoch 17,  22036/  500/ 1346; acc:   0.00; loss: 80258.05; words: 78760; ppl:   2.77; 1046 src tok/s; 403 tgt tok/s;    195 s elapsed
+2019-08-11 18:44:37,718 [INFO :__main__] Epoch 17,  22136/  600/ 1346; acc:   0.00; loss: 80330.98; words: 78762; ppl:   2.77; 5843 src tok/s; 2238 tgt tok/s;     35 s elapsed
+2019-08-11 18:45:12,173 [INFO :__main__] Epoch 17,  22236/  700/ 1346; acc:   0.00; loss: 77802.34; words: 78206; ppl:   2.70; 6035 src tok/s; 2270 tgt tok/s;     34 s elapsed
+2019-08-11 18:45:46,970 [INFO :__main__] Epoch 17,  22336/  800/ 1346; acc:   0.00; loss: 78055.80; words: 78555; ppl:   2.70; 5977 src tok/s; 2258 tgt tok/s;     35 s elapsed
+2019-08-11 18:46:21,596 [INFO :__main__] Epoch 17,  22436/  900/ 1346; acc:   0.00; loss: 78485.13; words: 78649; ppl:   2.71; 6088 src tok/s; 2271 tgt tok/s;     35 s elapsed
+2019-08-11 18:46:43,429 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:49:24,824 [WARNI:__main__] Set model to train mode
+2019-08-11 18:49:24,824 [INFO :__main__] Validation Score: 12.6418
+2019-08-11 18:49:24,824 [INFO :s2s.Optim] Bad_count: 2	Current lr: 9.765625e-07
+2019-08-11 18:49:24,824 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:49:37,589 [INFO :__main__] Epoch 17,  22536/ 1000/ 1346; acc:   0.00; loss: 80430.49; words: 79039; ppl:   2.77; 1048 src tok/s; 403 tgt tok/s;    196 s elapsed
+2019-08-11 18:50:11,674 [INFO :__main__] Epoch 17,  22636/ 1100/ 1346; acc:   0.00; loss: 77902.36; words: 78539; ppl:   2.70; 6012 src tok/s; 2304 tgt tok/s;     34 s elapsed
+2019-08-11 18:50:46,526 [INFO :__main__] Epoch 17,  22736/ 1200/ 1346; acc:   0.00; loss: 80516.22; words: 78900; ppl:   2.77; 5961 src tok/s; 2264 tgt tok/s;     35 s elapsed
+2019-08-11 18:51:21,245 [INFO :__main__] Epoch 17,  22836/ 1300/ 1346; acc:   0.00; loss: 78734.71; words: 78550; ppl:   2.72; 6032 src tok/s; 2263 tgt tok/s;     35 s elapsed
+2019-08-11 18:51:36,887 [INFO :__main__] Train perplexity: 2.73131
+2019-08-11 18:51:36,888 [INFO :__main__] Train accuracy: 0
+2019-08-11 18:51:36,888 [INFO :__main__] Saving checkpoint for epoch 17...
+2019-08-11 18:51:37,627 [INFO :__main__] 
+2019-08-11 18:51:37,627 [INFO :__main__] Shuffling...
+2019-08-11 18:52:12,722 [INFO :__main__] Epoch 18,  22982/  100/ 1346; acc:   0.00; loss: 79186.16; words: 78397; ppl:   2.75; 6044 src tok/s; 2300 tgt tok/s;     34 s elapsed
+2019-08-11 18:52:18,809 [WARNI:__main__] Set model to eval mode
+2019-08-11 18:54:58,888 [WARNI:__main__] Set model to train mode
+2019-08-11 18:54:58,888 [INFO :__main__] Validation Score: 12.6531
+2019-08-11 18:54:58,888 [INFO :s2s.Optim] Bad_count: 3	Current lr: 9.765625e-07
+2019-08-11 18:54:58,888 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 18:55:27,952 [INFO :__main__] Epoch 18,  23082/  200/ 1346; acc:   0.00; loss: 79129.56; words: 78647; ppl:   2.74; 1043 src tok/s; 403 tgt tok/s;    195 s elapsed
+2019-08-11 18:56:02,818 [INFO :__main__] Epoch 18,  23182/  300/ 1346; acc:   0.00; loss: 78767.68; words: 78484; ppl:   2.73; 6001 src tok/s; 2251 tgt tok/s;     35 s elapsed
+2019-08-11 18:56:37,578 [INFO :__main__] Epoch 18,  23282/  400/ 1346; acc:   0.00; loss: 78420.13; words: 78452; ppl:   2.72; 6045 src tok/s; 2257 tgt tok/s;     35 s elapsed
+2019-08-11 18:57:12,581 [INFO :__main__] Epoch 18,  23382/  500/ 1346; acc:   0.00; loss: 78449.74; words: 78813; ppl:   2.71; 5867 src tok/s; 2252 tgt tok/s;     35 s elapsed
+2019-08-11 18:57:47,122 [INFO :__main__] Epoch 18,  23482/  600/ 1346; acc:   0.00; loss: 77513.51; words: 78671; ppl:   2.68; 6026 src tok/s; 2278 tgt tok/s;     35 s elapsed
+2019-08-11 18:57:53,252 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:00:33,873 [WARNI:__main__] Set model to train mode
+2019-08-11 19:00:33,873 [INFO :__main__] Validation Score: 12.6327
+2019-08-11 19:00:33,873 [INFO :s2s.Optim] Bad_count: 4	Current lr: 9.765625e-07
+2019-08-11 19:00:33,873 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:01:02,576 [INFO :__main__] Epoch 18,  23582/  700/ 1346; acc:   0.00; loss: 79188.16; words: 78751; ppl:   2.73; 1045 src tok/s; 403 tgt tok/s;    195 s elapsed
+2019-08-11 19:01:37,097 [INFO :__main__] Epoch 18,  23682/  800/ 1346; acc:   0.00; loss: 79742.13; words: 78897; ppl:   2.75; 6015 src tok/s; 2286 tgt tok/s;     35 s elapsed
+2019-08-11 19:02:11,468 [INFO :__main__] Epoch 18,  23782/  900/ 1346; acc:   0.00; loss: 78509.36; words: 78267; ppl:   2.73; 5978 src tok/s; 2277 tgt tok/s;     34 s elapsed
+2019-08-11 19:02:45,505 [INFO :__main__] Epoch 18,  23882/ 1000/ 1346; acc:   0.00; loss: 79158.10; words: 78680; ppl:   2.73; 5983 src tok/s; 2312 tgt tok/s;     34 s elapsed
+2019-08-11 19:03:20,297 [INFO :__main__] Epoch 18,  23982/ 1100/ 1346; acc:   0.00; loss: 78948.60; words: 78449; ppl:   2.74; 6001 src tok/s; 2255 tgt tok/s;     35 s elapsed
+2019-08-11 19:03:25,815 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:06:07,524 [WARNI:__main__] Set model to train mode
+2019-08-11 19:06:07,525 [INFO :__main__] Validation Score: 12.6144
+2019-08-11 19:06:07,525 [INFO :s2s.Optim] Bad_count: 5	Current lr: 9.765625e-07
+2019-08-11 19:06:07,525 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:06:35,842 [INFO :__main__] Epoch 18,  24082/ 1200/ 1346; acc:   0.00; loss: 80237.56; words: 78713; ppl:   2.77; 1048 src tok/s; 403 tgt tok/s;    196 s elapsed
+2019-08-11 19:07:10,251 [INFO :__main__] Epoch 18,  24182/ 1300/ 1346; acc:   0.00; loss: 78428.12; words: 78305; ppl:   2.72; 5916 src tok/s; 2276 tgt tok/s;     34 s elapsed
+2019-08-11 19:07:26,827 [INFO :__main__] Train perplexity: 2.73113
+2019-08-11 19:07:26,828 [INFO :__main__] Train accuracy: 0
+2019-08-11 19:07:26,828 [INFO :__main__] Saving checkpoint for epoch 18...
+2019-08-11 19:07:27,553 [INFO :__main__] 
+2019-08-11 19:07:27,553 [INFO :__main__] Shuffling...
+2019-08-11 19:08:02,353 [INFO :__main__] Epoch 19,  24328/  100/ 1346; acc:   0.00; loss: 79256.90; words: 78767; ppl:   2.74; 6197 src tok/s; 2331 tgt tok/s;     34 s elapsed
+2019-08-11 19:08:36,575 [INFO :__main__] Epoch 19,  24428/  200/ 1346; acc:   0.00; loss: 79427.34; words: 78554; ppl:   2.75; 6010 src tok/s; 2295 tgt tok/s;     34 s elapsed
+2019-08-11 19:09:01,430 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:11:42,692 [WARNI:__main__] Set model to train mode
+2019-08-11 19:11:42,692 [INFO :__main__] Validation Score: 12.6231
+2019-08-11 19:11:42,692 [INFO :s2s.Optim] Bad_count: 6	Current lr: 9.765625e-07
+2019-08-11 19:11:42,692 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:11:52,372 [INFO :__main__] Epoch 19,  24528/  300/ 1346; acc:   0.00; loss: 78857.91; words: 78488; ppl:   2.73; 1044 src tok/s; 401 tgt tok/s;    196 s elapsed
+2019-08-11 19:12:26,731 [INFO :__main__] Epoch 19,  24628/  400/ 1346; acc:   0.00; loss: 79991.13; words: 78592; ppl:   2.77; 5994 src tok/s; 2287 tgt tok/s;     34 s elapsed
+2019-08-11 19:13:01,276 [INFO :__main__] Epoch 19,  24728/  500/ 1346; acc:   0.00; loss: 78822.53; words: 78393; ppl:   2.73; 6032 src tok/s; 2269 tgt tok/s;     35 s elapsed
+2019-08-11 19:13:36,463 [INFO :__main__] Epoch 19,  24828/  600/ 1346; acc:   0.00; loss: 78164.91; words: 78750; ppl:   2.70; 5833 src tok/s; 2238 tgt tok/s;     35 s elapsed
+2019-08-11 19:14:11,149 [INFO :__main__] Epoch 19,  24928/  700/ 1346; acc:   0.00; loss: 77787.19; words: 78405; ppl:   2.70; 5996 src tok/s; 2260 tgt tok/s;     35 s elapsed
+2019-08-11 19:14:36,208 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:17:17,331 [WARNI:__main__] Set model to train mode
+2019-08-11 19:17:17,331 [INFO :__main__] Validation Score: 12.6061
+2019-08-11 19:17:17,331 [INFO :s2s.Optim] Bad_count: 7	Current lr: 9.765625e-07
+2019-08-11 19:17:17,331 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:17:27,873 [INFO :__main__] Epoch 19,  25028/  800/ 1346; acc:   0.00; loss: 79109.97; words: 78666; ppl:   2.73; 1039 src tok/s; 400 tgt tok/s;    197 s elapsed
+2019-08-11 19:18:02,567 [INFO :__main__] Epoch 19,  25128/  900/ 1346; acc:   0.00; loss: 79805.60; words: 79363; ppl:   2.73; 6013 src tok/s; 2288 tgt tok/s;     35 s elapsed
+2019-08-11 19:18:37,466 [INFO :__main__] Epoch 19,  25228/ 1000/ 1346; acc:   0.00; loss: 79746.04; words: 79128; ppl:   2.74; 5993 src tok/s; 2267 tgt tok/s;     35 s elapsed
+2019-08-11 19:19:13,394 [INFO :__main__] Epoch 19,  25328/ 1100/ 1346; acc:   0.00; loss: 78133.26; words: 78600; ppl:   2.70; 5840 src tok/s; 2188 tgt tok/s;     36 s elapsed
+2019-08-11 19:19:47,664 [INFO :__main__] Epoch 19,  25428/ 1200/ 1346; acc:   0.00; loss: 78323.15; words: 78459; ppl:   2.71; 6053 src tok/s; 2290 tgt tok/s;     34 s elapsed
+2019-08-11 19:20:12,710 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:22:53,342 [WARNI:__main__] Set model to train mode
+2019-08-11 19:22:53,342 [INFO :__main__] Validation Score: 12.6324
+2019-08-11 19:22:53,342 [INFO :s2s.Optim] Bad_count: 8	Current lr: 9.765625e-07
+2019-08-11 19:22:53,342 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:23:03,710 [INFO :__main__] Epoch 19,  25528/ 1300/ 1346; acc:   0.00; loss: 79345.71; words: 78123; ppl:   2.76; 1033 src tok/s; 398 tgt tok/s;    196 s elapsed
+2019-08-11 19:23:19,698 [INFO :__main__] Train perplexity: 2.72903
+2019-08-11 19:23:19,699 [INFO :__main__] Train accuracy: 0
+2019-08-11 19:23:19,699 [INFO :__main__] Saving checkpoint for epoch 19...
+2019-08-11 19:23:20,420 [INFO :__main__] 
+2019-08-11 19:23:20,420 [INFO :__main__] Shuffling...
+2019-08-11 19:23:55,153 [INFO :__main__] Epoch 20,  25674/  100/ 1346; acc:   0.00; loss: 80370.87; words: 78804; ppl:   2.77; 6186 src tok/s; 2335 tgt tok/s;     34 s elapsed
+2019-08-11 19:24:29,874 [INFO :__main__] Epoch 20,  25774/  200/ 1346; acc:   0.00; loss: 79646.89; words: 78728; ppl:   2.75; 6014 src tok/s; 2268 tgt tok/s;     35 s elapsed
+2019-08-11 19:25:04,825 [INFO :__main__] Epoch 20,  25874/  300/ 1346; acc:   0.00; loss: 77757.03; words: 78598; ppl:   2.69; 5975 src tok/s; 2249 tgt tok/s;     35 s elapsed
+2019-08-11 19:25:39,353 [INFO :__main__] Epoch 20,  25974/  400/ 1346; acc:   0.00; loss: 79392.90; words: 78923; ppl:   2.73; 5984 src tok/s; 2286 tgt tok/s;     35 s elapsed
+2019-08-11 19:25:47,866 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:28:29,437 [WARNI:__main__] Set model to train mode
+2019-08-11 19:28:29,438 [INFO :__main__] Validation Score: 12.6141
+2019-08-11 19:28:29,438 [INFO :s2s.Optim] Bad_count: 9	Current lr: 9.765625e-07
+2019-08-11 19:28:29,438 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:28:55,732 [INFO :__main__] Epoch 20,  26074/  500/ 1346; acc:   0.00; loss: 78853.41; words: 78415; ppl:   2.73; 1040 src tok/s; 399 tgt tok/s;    196 s elapsed
+2019-08-11 19:29:30,268 [INFO :__main__] Epoch 20,  26174/  600/ 1346; acc:   0.00; loss: 77285.14; words: 77807; ppl:   2.70; 6025 src tok/s; 2253 tgt tok/s;     35 s elapsed
+2019-08-11 19:30:05,101 [INFO :__main__] Epoch 20,  26274/  700/ 1346; acc:   0.00; loss: 80171.58; words: 79088; ppl:   2.76; 6029 src tok/s; 2271 tgt tok/s;     35 s elapsed
+2019-08-11 19:30:39,743 [INFO :__main__] Epoch 20,  26374/  800/ 1346; acc:   0.00; loss: 79917.46; words: 78760; ppl:   2.76; 6049 src tok/s; 2274 tgt tok/s;     35 s elapsed
+2019-08-11 19:31:14,518 [INFO :__main__] Epoch 20,  26474/  900/ 1346; acc:   0.00; loss: 76386.28; words: 78081; ppl:   2.66; 6024 src tok/s; 2245 tgt tok/s;     35 s elapsed
+2019-08-11 19:31:23,136 [WARNI:__main__] Set model to eval mode
+2019-08-11 19:34:04,970 [WARNI:__main__] Set model to train mode
+2019-08-11 19:34:04,970 [INFO :__main__] Validation Score: 12.6402
+2019-08-11 19:34:04,971 [INFO :s2s.Optim] Bad_count: 10	Current lr: 9.765625e-07
+2019-08-11 19:34:04,971 [INFO :s2s.Optim] Best metric: 0.1344387524731471
+2019-08-11 19:34:31,410 [INFO :__main__] Epoch 20,  26574/ 1000/ 1346; acc:   0.00; loss: 79632.25; words: 78799; ppl:   2.75; 1044 src tok/s; 400 tgt tok/s;    197 s elapsed
+2019-08-11 19:35:05,877 [INFO :__main__] Epoch 20,  26674/ 1100/ 1346; acc:   0.00; loss: 78449.05; words: 79295; ppl:   2.69; 6030 src tok/s; 2301 tgt tok/s;     34 s elapsed
+2019-08-11 19:35:40,484 [INFO :__main__] Epoch 20,  26774/ 1200/ 1346; acc:   0.00; loss: 78919.64; words: 78258; ppl:   2.74; 5919 src tok/s; 2261 tgt tok/s;     35 s elapsed
+2019-08-11 19:36:15,270 [INFO :__main__] Epoch 20,  26874/ 1300/ 1346; acc:   0.00; loss: 77948.92; words: 78232; ppl:   2.71; 5977 src tok/s; 2249 tgt tok/s;     35 s elapsed
+2019-08-11 19:36:30,917 [INFO :__main__] Train perplexity: 2.72803
+2019-08-11 19:36:30,918 [INFO :__main__] Train accuracy: 0
+2019-08-11 19:36:30,918 [INFO :__main__] Saving checkpoint for epoch 20...
