@@ -1,0 +1,63 @@
+
+### Prepare the dataset and code
+
+```
+Put the data from redistribute.zip in the folder `$NQG_HOME/nqg/data/` and organize it as:
+```
+nqg
++-- code
+¦   +-- NQG
+¦       +-- seq2seq_pt
++-- data
+    +-- redistribute
+        +-- QG
+        ¦   +-- dev
+        ¦   +-- test
+        ¦   +-- test_sample
+        ¦   +-- train
+        +-- raw
+```
+Then collect vocabularies:
+```bash
+python $NQG_HOME/code/NQG/seq2seq_pt/CollectVocab.py \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.source.txt \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.target.txt \
+       $NQG_HOME/data/redistribute/QG/train/vocab.txt
+python $NQG_HOME/code/NQG/seq2seq_pt/CollectVocab.py \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.bio \
+       $NQG_HOME/data/redistribute/QG/train/bio.vocab.txt
+python $NQG_HOME/code/NQG/seq2seq_pt/CollectVocab.py \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.pos \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.ner \
+       $NQG_HOME/data/redistribute/QG/train/train.txt.case \
+       $NQG_HOME/data/redistribute/QG/train/feat.vocab.txt
+head -n 20000 $NQG_HOME/data/redistribute/QG/train/vocab.txt > $NQG_HOME/data/redistribute/QG/train/vocab.txt.20k
+```
+
+
+#### Package Requirements:
+```
+nltk scipy numpy pytorch transformers
+```
+PyTorch version: This code requires PyTorch v0.4.0.
+
+Python version: This code requires Python3.
+
+### Extracting bert embeddings
+python extract_features.py \
+    --input_file= \\the path of the source file. \
+    --output_file= \\path of the output file \
+    --bert_model=bert-base-uncased \
+
+```
+### Run training
+
+```bash
+bash $NQG_HOME/code/NQG/seq2seq_pt/run_squad_qg.sh $NQG_HOME/data/redistribute/QG $NQG_HOME/code/NQG/seq2seq_pt
+```
+```
+### Predict
+python translate.py \
+    --model = \\ path to the .pt file
+    --src = \\ input text tile to the model
+   
